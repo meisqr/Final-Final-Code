@@ -7,6 +7,8 @@ public class GameCanvas extends JComponent{
     private Player player1, player2;
     private Playing playing;
     public Game game;
+    private Menu menu;
+    private GameOptions gameOptions;
     // add components
 
     public GameCanvas(int w, int h){
@@ -14,6 +16,8 @@ public class GameCanvas extends JComponent{
         height = h;
         game = new Game();
         playing = new Playing(game);
+        menu = new Menu(game);
+        gameOptions = new GameOptions(game);
         player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing,1);
         player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing,2);
         // add components
@@ -57,5 +61,17 @@ public class GameCanvas extends JComponent{
 
     public Game getGame(){
         return game;
+    }
+
+    public Menu getMenu(){
+        return menu;
+    }
+
+    public Playing getPlaying(){
+        return playing;
+    }
+
+    public GameOptions getGameOptions(){
+        return gameOptions;
     }
 }

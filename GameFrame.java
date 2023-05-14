@@ -34,8 +34,6 @@ public class GameFrame extends JFrame implements Runnable {
     private Game newGame;
     private Playing playing;
     private GameCanvas gameCanvas;
-    private Menu menu;
-    private GameOptions gameOptions;
 
 
     public GameFrame(int w, int h){
@@ -62,14 +60,16 @@ public class GameFrame extends JFrame implements Runnable {
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-
+  
         setUpAnimationTimer();
         setUpKeyListener();
         setUpMouseListener();
         setUpMouseMotionListener();
+        
+        startGameLoop();  
     }
 
-    private void createSprites(){
+    /*private void createSprites(){
         if(playerID == 1) {
             player1 = new Player(50,60,10,20, playing,1);
             player2 = new Player(70,60,10,20, playing,2);
@@ -77,7 +77,7 @@ public class GameFrame extends JFrame implements Runnable {
             player2 = new Player(50,60,10,20, playing,2);
             player1 = new Player(70,60,10,20, playing,1);
         }
-    }
+    }*/
 
     private void setUpAnimationTimer(){
         int interval = 10;
@@ -239,14 +239,22 @@ public class GameFrame extends JFrame implements Runnable {
 
     public void update() {
 		switch (Gamestate.state) {
-		case MENU -> menu.update();
-		case PLAYING -> playing.update();
-		case OPTIONS -> gameOptions.update();
+		case MENU -> gameCanvas.getMenu().update();
+		case PLAYING -> gameCanvas.getPlaying().update();
+		case OPTIONS -> gameCanvas.getGameOptions().update();
 //		case CREDITS -> credits.update();
 		case QUIT -> System.exit(0);
 		}
 	}
-
+    @SuppressWarnings("incomplete-switch")
+	public void render(Graphics g) {
+		switch (Gamestate.state) {
+		case MENU -> gameCanvas.getMenu().draw(g);
+		case PLAYING -> gameCanvas.getPlaying().draw(g);
+		case OPTIONS -> gameCanvas.getGameOptions().draw(g);
+//		case CREDITS -> credits.draw(g);
+		}
+	}
 	@Override
 	public void run() {
 		double timePerFrame = 1000000000.0 / FPS_SET;
@@ -298,6 +306,11 @@ public class GameFrame extends JFrame implements Runnable {
 		}
 	}
 
+    public void windowFocusLost() {
+		if (Gamestate.state == Gamestate.PLAYING)
+			playing.getPlayer().resetDirBooleans();
+	}
+
     public void connectToServer(){
         try{
             socket = new Socket("localhost", 45371);
@@ -316,14 +329,6 @@ public class GameFrame extends JFrame implements Runnable {
         }
     }
 
-    /*private class DrawingComponent extends JComponent{
-        @Override
-        protected void paintComponent(Graphics g){
-            Graphics2D g2d = (Graphics2D) g;
-           // player1.render(g2d,game.xlvlOffset);
-            player2.render(g2d,1);
-        }
-    }*/
 
     private class ReadFromServer implements Runnable{
 

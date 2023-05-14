@@ -23,6 +23,7 @@ public class Game implements Runnable {
 	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 
 	private final boolean SHOW_FPS_UPS = true;
+	//private GameCanvas gameCanvas;
 
 	public Game() {
 		System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
@@ -30,6 +31,7 @@ public class Game implements Runnable {
 		//gamePanel = new GamePanel(this);
 		//new GameWindow(gamePanel);
 		//gamePanel.requestFocusInWindow();
+		//gameCanvas = new GameCanvas(GAME_WIDTH, GAME_HEIGHT);
 		startGameLoop();
 	}
 
