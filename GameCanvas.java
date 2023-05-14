@@ -6,12 +6,13 @@ public class GameCanvas extends JComponent{
     private int width, height;
     private Player player1, player2;
     private Playing playing;
-    private Game game;
+    public Game game;
     // add components
 
     public GameCanvas(int w, int h){
         width = w;
         height = h;
+        game = new Game();
         playing = new Playing(game);
         player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing,1);
         player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing,2);
@@ -41,7 +42,9 @@ public class GameCanvas extends JComponent{
         playing.objectManager.drawBackgroundTrees(g, playing.xLvlOffset);
         playing.drawDialogue(g, playing.xLvlOffset);
         
-        
-        
+    }
+
+    public Game getGame(){
+        return game;
     }
 }

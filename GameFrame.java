@@ -95,6 +95,14 @@ public class GameFrame extends JFrame {
 
             @Override
             public void keyPressed(KeyEvent ke) {
+                switch (Gamestate.state) {
+                    case MENU -> gameCanvas.getGame().getMenu().keyPressed(ke);
+                    case PLAYING -> gameCanvas.getGame().getPlaying().keyPressed(ke);
+                    case OPTIONS -> gameCanvas.getGame().getGameOptions().keyPressed(ke);
+                    case CREDITS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+                    case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+                    default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
+                    }
                 int keyCode = ke.getKeyCode();
 
                 switch(keyCode){
@@ -115,6 +123,14 @@ public class GameFrame extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent ke) {
+                switch (Gamestate.state) {
+                    case MENU -> gameCanvas.getGame().getMenu().keyReleased(ke);
+                    case PLAYING -> gameCanvas.getGame().getPlaying().keyReleased(ke);
+                    case CREDITS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+                    case OPTIONS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+                    case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+                    default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
+                    }
                 int keyCode = ke.getKeyCode();
 
                 switch(keyCode){
@@ -134,6 +150,7 @@ public class GameFrame extends JFrame {
             }
         };
         contentPane.addKeyListener(kl);
+    
     }
 
 
