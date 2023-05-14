@@ -4,15 +4,15 @@ import java.awt.Graphics;
 
 public class Game implements Runnable {
 
-	private GamePanel gamePanel;
+	//private GamePanel gamePanel;
 	private Thread gameThread;
 	private final int FPS_SET = 120;
 	private final int UPS_SET = 200;
 
 	private Playing playing;
-	private Menu menu;
+	Menu menu;
 //	private Credits credits;
-	private GameOptions gameOptions;
+	GameOptions gameOptions;
 
 	public final static int TILES_DEFAULT_SIZE = 32;
 	public final static float SCALE = 1f;
@@ -27,9 +27,9 @@ public class Game implements Runnable {
 	public Game() {
 		System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
 		initClasses();
-		gamePanel = new GamePanel(this);
-		new GameWindow(gamePanel);
-		gamePanel.requestFocusInWindow();
+		//gamePanel = new GamePanel(this);
+		//new GameWindow(gamePanel);
+		//gamePanel.requestFocusInWindow();
 		startGameLoop();
 	}
 
@@ -97,7 +97,7 @@ public class Game implements Runnable {
 
 			if (deltaF >= 1) {
 
-				gamePanel.repaint();
+				//gameCanvas.repaint();
 				frames++;
 				deltaF--;
 

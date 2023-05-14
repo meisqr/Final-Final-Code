@@ -7,12 +7,23 @@ import java.io.*;
 import java.net.*;
 
 
-public class GameFrame extends JFrame {
-    
+public class GameFrame extends JFrame implements Runnable {
+    private Thread gameThread;
+    private final int FPS_SET = 120;
+	private final int UPS_SET = 200;
+    public final static int TILES_DEFAULT_SIZE = 32;
+	public final static float SCALE = 1f;
+	public final static int TILES_IN_WIDTH = 26;
+	public final static int TILES_IN_HEIGHT = 14;
+	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+
+	private final boolean SHOW_FPS_UPS = true;
     private int width, height;
     private Container contentPane;
     private Player player1, player2;
-    private DrawingComponent dc;
+    //private DrawingComponent dc;
     private Timer animationTimer;
     private Boolean up, down, left, right;
     private Socket socket;
@@ -23,6 +34,8 @@ public class GameFrame extends JFrame {
     private Game newGame;
     private Playing playing;
     private GameCanvas gameCanvas;
+    private Menu menu;
+    private GameOptions gameOptions;
 
 
     public GameFrame(int w, int h){
@@ -40,9 +53,9 @@ public class GameFrame extends JFrame {
         contentPane = this.getContentPane();
         this.setTitle("Player #" + playerID);
         contentPane.setPreferredSize(new Dimension(width, height));
-        createSprites();
-        dc = new DrawingComponent();
-        contentPane.add(dc);
+        //createSprites();
+        //dc = new DrawingComponent();
+        //contentPane.add(dc);
         contentPane.add(gameCanvas);
         contentPane.setFocusable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -52,6 +65,8 @@ public class GameFrame extends JFrame {
 
         setUpAnimationTimer();
         setUpKeyListener();
+        setUpMouseListener();
+        setUpMouseMotionListener();
     }
 
     private void createSprites(){
@@ -69,7 +84,7 @@ public class GameFrame extends JFrame {
         ActionListener al = new ActionListener(){
             public void actionPerformed(ActionEvent ae){
                 double speed = 5;
-                if(up){
+                /*if(up){
                     player1.moveV(-speed);
                 } else if (down){
                     player1.moveV(speed);
@@ -77,8 +92,9 @@ public class GameFrame extends JFrame {
                     player1.moveH(-speed);
                 } else if (right){
                     player1.moveH(speed);
-                }
-                dc.repaint();
+                }*/
+                //dc.repaint();
+                gameCanvas.repaint();
             }
         };
         animationTimer = new Timer(interval, al);
@@ -131,7 +147,7 @@ public class GameFrame extends JFrame {
                     case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
                     default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
                     }
-                int keyCode = ke.getKeyCode();
+                /*int keyCode = ke.getKeyCode();
 
                 switch(keyCode){
                     case KeyEvent.VK_W:
@@ -146,13 +162,141 @@ public class GameFrame extends JFrame {
                     case KeyEvent.VK_D:
                         right = false;
                         break;
-                }
+                }*/
             }
         };
         contentPane.addKeyListener(kl);
-    
     }
 
+    public void setUpMouseListener(){
+        MouseListener ml = new MouseListener(){
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                switch (Gamestate.state) {
+                    case PLAYING -> gameCanvas.getGame().getPlaying().mouseClicked(e);
+                    }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                switch (Gamestate.state) {
+                    case MENU -> gameCanvas.getGame().getMenu().mousePressed(e);
+                    case PLAYING -> gameCanvas.getGame().getPlaying().mousePressed(e);
+                    case OPTIONS -> gameCanvas.getGame().getGameOptions().mousePressed(e);
+                }
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                switch (Gamestate.state) {
+                    case MENU -> gameCanvas.getGame().getMenu().mouseReleased(e);
+                    case PLAYING -> gameCanvas.getGame().getPlaying().mouseReleased(e);
+                    case OPTIONS -> gameCanvas.getGame().getGameOptions().mouseReleased(e);
+                }    
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                // not used
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                // not used
+            }
+        };
+        contentPane.addMouseListener(ml);
+    }
+
+    public void setUpMouseMotionListener(){
+        MouseMotionListener mml = new MouseMotionListener() {
+
+            @Override
+            public void mouseDragged(MouseEvent e) {
+                switch (Gamestate.state) {
+                    case PLAYING -> gameCanvas.getGame().getPlaying().mouseDragged(e);
+                    case OPTIONS -> gameCanvas.getGame().getGameOptions().mouseDragged(e);
+                }
+            }
+
+            @Override
+            public void mouseMoved(MouseEvent e) {
+                switch (Gamestate.state) {
+                    case MENU -> gameCanvas.getGame().getMenu().mouseMoved(e);
+                    case PLAYING -> gameCanvas.getGame().getPlaying().mouseMoved(e);
+                    case OPTIONS -> gameCanvas.getGame().getGameOptions().mouseMoved(e);
+                    }
+            }
+        };
+        contentPane.addMouseMotionListener(mml);
+    }
+
+    private void startGameLoop(){
+        gameThread = new Thread(this);
+        gameThread.start();
+    }
+
+    public void update() {
+		switch (Gamestate.state) {
+		case MENU -> menu.update();
+		case PLAYING -> playing.update();
+		case OPTIONS -> gameOptions.update();
+//		case CREDITS -> credits.update();
+		case QUIT -> System.exit(0);
+		}
+	}
+
+	@Override
+	public void run() {
+		double timePerFrame = 1000000000.0 / FPS_SET;
+		double timePerUpdate = 1000000000.0 / UPS_SET;
+
+		long previousTime = System.nanoTime();
+
+		int frames = 0;
+		int updates = 0;
+		long lastCheck = System.currentTimeMillis();
+
+		double deltaU = 0;
+		double deltaF = 0;
+
+		while (true) {
+
+			long currentTime = System.nanoTime();
+
+			deltaU += (currentTime - previousTime) / timePerUpdate;
+			deltaF += (currentTime - previousTime) / timePerFrame;
+			previousTime = currentTime;
+
+			if (deltaU >= 1) {
+
+				update();
+				updates++;
+				deltaU--;
+
+			}
+
+			if (deltaF >= 1) {
+
+				gameCanvas.repaint();
+				frames++;
+				deltaF--;
+
+			}
+
+			if (SHOW_FPS_UPS)
+				if (System.currentTimeMillis() - lastCheck >= 1000) {
+
+					lastCheck = System.currentTimeMillis();
+					System.out.println("FPS: " + frames + " | UPS: " + updates);
+					frames = 0;
+					updates = 0;
+
+				}
+
+		}
+	}
 
     public void connectToServer(){
         try{
@@ -172,14 +316,14 @@ public class GameFrame extends JFrame {
         }
     }
 
-    private class DrawingComponent extends JComponent{
+    /*private class DrawingComponent extends JComponent{
         @Override
         protected void paintComponent(Graphics g){
             Graphics2D g2d = (Graphics2D) g;
-            player1.render(g2d,1);
+           // player1.render(g2d,game.xlvlOffset);
             player2.render(g2d,1);
         }
-    }
+    }*/
 
     private class ReadFromServer implements Runnable{
 

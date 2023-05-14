@@ -29,9 +29,7 @@ public class GameCanvas extends JComponent{
         g.drawImage(playing.backgroundImg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
         
         playing.drawClouds(g);
-        if (playing.drawRain)
-            playing.rain.draw(g, playing.xLvlOffset);
-
+        
         playing.levelManager.draw(g, playing.xLvlOffset);
         playing.objectManager.draw(g, playing.xLvlOffset);
         playing.enemyManager.draw(g, playing.xLvlOffset);
@@ -43,6 +41,19 @@ public class GameCanvas extends JComponent{
         playing.drawDialogue(g, playing.xLvlOffset);
         
     }
+
+    public void render(Graphics g) {
+		switch (Gamestate.state) {
+		case MENU -> game.menu.draw(g);
+		case PLAYING -> playing.draw(g);
+		case OPTIONS -> game.gameOptions.draw(g);
+//		case CREDITS -> credits.draw(g);
+        case CREDITS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+        case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+        default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
+		}
+	}
+
 
     public Game getGame(){
         return game;

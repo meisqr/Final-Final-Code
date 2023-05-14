@@ -19,7 +19,6 @@ public class Playing extends State implements Statemethods {
 	private GameOverOverlay gameOverOverlay;
 	private GameCompletedOverlay gameCompletedOverlay;
 	private LevelCompletedOverlay levelCompletedOverlay;
-	Rain rain;
 
 	private boolean paused = false;
 
@@ -31,7 +30,6 @@ public class Playing extends State implements Statemethods {
 	public BufferedImage backgroundImg;
 	public BufferedImage bigCloud;
 	public BufferedImage smallCloud;
-	public BufferedImage shipImgs[];
 	private BufferedImage[] questionImgs, exclamationImgs;
 	private ArrayList<DialogueEffect> dialogEffects = new ArrayList<>();
 
@@ -42,21 +40,14 @@ public class Playing extends State implements Statemethods {
 	private boolean lvlCompleted;
 	private boolean gameCompleted;
 	private boolean playerDying;
-	boolean drawRain;
 
-	// Ship will be decided to drawn here. It's just a cool addition to the game
-	// for the first level. Hinting on that the player arrived with the boat.
-
+	
 	// If you would like to have it on more levels, add a value for objects when
 	// creating the level from lvlImgs. Just like any other object.
 
 	// Then play around with position values so it looks correct depending on where
 	// you want
 	// it.
-
-	boolean drawShip = true;
-	private int shipAni, shipTick, shipDir = 1;
-	private float shipHeightDelta, shipHeightChange = 0.05f * Game.SCALE;
 
 	public Playing(Game game) {
 		super(game);
@@ -69,15 +60,9 @@ public class Playing extends State implements Statemethods {
 		for (int i = 0; i < smallCloudsPos.length; i++)
 			smallCloudsPos[i] = (int) (90 * Game.SCALE) + rnd.nextInt((int) (100 * Game.SCALE));
 
-		shipImgs = new BufferedImage[4];
-		BufferedImage temp = LoadSave.GetSpriteAtlas(LoadSave.SHIP);
-		for (int i = 0; i < shipImgs.length; i++)
-			shipImgs[i] = temp.getSubimage(i * 78, 0, 78, 72);
-
 		loadDialogue();
 		calcLvlOffset();
 		loadStartLevel();
-		setDrawRainBoolean();
 	}
 
 	private void loadDialogue() {
@@ -114,7 +99,6 @@ public class Playing extends State implements Statemethods {
 		levelManager.loadNextLevel();
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 		resetAll();
-		drawShip = false;
 	}
 
 	private void loadStartLevel() {
@@ -140,7 +124,6 @@ public class Playing extends State implements Statemethods {
 		levelCompletedOverlay = new LevelCompletedOverlay(this);
 		gameCompletedOverlay = new GameCompletedOverlay(this);
 
-		rain = new Rain();
 	}
 
 	@Override
@@ -157,35 +140,13 @@ public class Playing extends State implements Statemethods {
 			player.update();
 		else {
 			updateDialogue();
-			if (drawRain)
-				rain.update(xLvlOffset);
 			levelManager.update();
 			objectManager.update(levelManager.getCurrentLevel().getLevelData(), player);
 			player.update();
 			enemyManager.update(levelManager.getCurrentLevel().getLevelData());
 			checkCloseToBorder();
-			if (drawShip)
-				updateShipAni();
+			
 		}
-	}
-
-	private void updateShipAni() {
-		shipTick++;
-		if (shipTick >= 35) {
-			shipTick = 0;
-			shipAni++;
-			if (shipAni >= 4)
-				shipAni = 0;
-		}
-
-		shipHeightDelta += shipHeightChange * shipDir;
-		shipHeightDelta = Math.max(Math.min(10 * Game.SCALE, shipHeightDelta), 0);
-
-		if (shipHeightDelta == 0)
-			shipDir = 1;
-		else if (shipHeightDelta == 10 * Game.SCALE)
-			shipDir = -1;
-
 	}
 
 	private void updateDialogue() {
@@ -279,20 +240,12 @@ public class Playing extends State implements Statemethods {
 		paused = false;
 		lvlCompleted = false;
 		playerDying = false;
-		drawRain = false;
-
-		setDrawRainBoolean();
+		
 
 		player.resetAll();
 		enemyManager.resetAllEnemies();
 		objectManager.resetAllObjects();
 		dialogEffects.clear();
-	}
-
-	private void setDrawRainBoolean() {
-		// This method makes it rain 20% of the time you load a level.
-		if (rnd.nextFloat() >= 0.8f)
-			drawRain = true;
 	}
 
 	public void setGameOver(boolean gameOver) {

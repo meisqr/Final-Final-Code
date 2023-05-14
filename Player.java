@@ -233,7 +233,7 @@ public class Player extends Entity {
 		g.fillRect(powerBarXStart + statusBarX, powerBarYStart + statusBarY, powerWidth, powerBarHeight);
 	}
 
-	private void updateAnimationTick() {
+	public void updateAnimationTick() {
 		aniTick++;
 		if (aniTick >= Constants.ANI_SPEED) {
 			aniTick = 0;
