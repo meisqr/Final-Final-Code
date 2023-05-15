@@ -255,9 +255,9 @@ public class GameFrame extends JFrame implements Runnable {
 
     public void update() {
 		switch (Gamestate.state) {
-		case MENU -> gameCanvas.getMenu().update();
-		case PLAYING -> gameCanvas.getPlaying().update();
-		case OPTIONS -> gameCanvas.getGameOptions().update();
+		case MENU -> gameCanvas.getGame().getMenu().update();
+		case PLAYING -> gameCanvas.getGame().getPlaying().update();
+		case OPTIONS -> gameCanvas.getGame().getGameOptions().update();
 //		case CREDITS -> credits.update();
 		case QUIT -> System.exit(0);
 		}
@@ -265,9 +265,9 @@ public class GameFrame extends JFrame implements Runnable {
     @SuppressWarnings("incomplete-switch")
 	public void render(Graphics g) {
 		switch (Gamestate.state) {
-		case MENU -> gameCanvas.getMenu().draw(g);
-		case PLAYING -> gameCanvas.getPlaying().draw(g);
-		case OPTIONS -> gameCanvas.getGameOptions().draw(g);
+		case MENU -> gameCanvas.getGame().getMenu().draw(g);
+		case PLAYING -> gameCanvas.getGame().getPlaying().draw(g);
+		case OPTIONS -> gameCanvas.getGame().getGameOptions().draw(g);
 //		case CREDITS -> credits.draw(g);
 		}
 	}
