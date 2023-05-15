@@ -25,16 +25,12 @@ import javax.swing.*;
 public class GameCanvas extends JComponent{
     private int width, height;
     private Player player1, player2;
-    private Playing playing;
     public Game game;
 
     public GameCanvas(int w, int h){
         width = w;
         height = h;
         game = new Game();
-        playing = new Playing(game);
-        player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing,1);
-        player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing,2);
     }
 
     @Override
@@ -44,37 +40,26 @@ public class GameCanvas extends JComponent{
         RenderingHints rh = new RenderingHints(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
         g2d.setRenderingHints(rh);
 
-        g.drawImage(playing.backgroundImg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
+        g.drawImage(game.getPlaying().backgroundImg, 0, 0, Game.GAME_WIDTH, Game.GAME_HEIGHT, null);
         
-        playing.drawClouds(g);
+        game.getPlaying().drawClouds(g);
         
-        playing.levelManager.draw(g, playing.xLvlOffset);
-        playing.objectManager.draw(g, playing.xLvlOffset);
-        playing.enemyManager.draw(g, playing.xLvlOffset);
+        game.getPlaying().levelManager.draw(g, game.getPlaying().xLvlOffset);
+        game.getPlaying().objectManager.draw(g, game.getPlaying().xLvlOffset);
+        game.getPlaying().objectManager.drawBackgroundTrees(g2d, game.getPlaying().xLvlOffset);
+        game.getPlaying().enemyManager.draw(g, game.getPlaying().xLvlOffset);
 
-        player1.render(g2d, playing.xLvlOffset);
-        player2.render(g2d, playing.xLvlOffset);
+        game.getPlaying().getPlayer().render(g2d, game.getPlaying().xLvlOffset);
+        
 
-        playing.objectManager.drawBackgroundTrees(g, playing.xLvlOffset);
-        playing.drawDialogue(g, playing.xLvlOffset);
+        game.getPlaying().objectManager.drawBackgroundTrees(g, game.getPlaying().xLvlOffset);
+        game.getPlaying().drawDialogue(g, game.getPlaying().xLvlOffset);
 
         game.render(g2d);
-        playing.update();
-        player1.update();
-        player2.update();
+        game.getPlaying().update();
+        
         
     }
-    /*
-    public void render(Graphics g) {
-		switch (Gamestate.state) {
-		case MENU -> game.menu.draw(g);
-		case PLAYING -> playing.draw(g);
-		case OPTIONS -> game.gameOptions.draw(g);
-        case CREDITS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
-        case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
-        default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
-		}
-	}*/
 
 
     public Game getGame(){

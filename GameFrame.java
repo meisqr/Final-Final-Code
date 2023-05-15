@@ -43,7 +43,8 @@ public class GameFrame extends JFrame implements Runnable {
     private Timer animationTimer;
     private Boolean up, down, left, right;
     private Socket socket;
-    private int playerID;
+    public static int playerID;
+    public static int playerNum;
     private ReadFromServer rfsRunnable;
     private WriteToServer wtsRunnable;
     private String ipAddress;
@@ -67,7 +68,7 @@ public class GameFrame extends JFrame implements Runnable {
         contentPane = this.getContentPane();
         this.setTitle("Player #" + playerID);
         contentPane.setPreferredSize(new Dimension(width, height));
-        //createSprites();
+        createSprites();
         //dc = new DrawingComponent();
         //contentPane.add(dc);
         contentPane.add(gameCanvas);
@@ -77,44 +78,21 @@ public class GameFrame extends JFrame implements Runnable {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
   
-        setUpAnimationTimer();
+        //setUpAnimationTimer();
+        
+        startGameLoop();  
         setUpKeyListener();
         setUpMouseListener();
         setUpMouseMotionListener();
         
-        startGameLoop();  
     }
 
-    /*private void createSprites(){
+    private void createSprites(){
         if(playerID == 1) {
-            player1 = new Player(50,60,10,20, playing,1);
-            player2 = new Player(70,60,10,20, playing,2);
+            playerNum = 1;
         } else{
-            player2 = new Player(50,60,10,20, playing,2);
-            player1 = new Player(70,60,10,20, playing,1);
+            playerNum = 2;
         }
-    }*/
-
-    private void setUpAnimationTimer(){
-        int interval = 10;
-        ActionListener al = new ActionListener(){
-            public void actionPerformed(ActionEvent ae){
-                double speed = 5;
-                /*if(up){
-                    player1.moveV(-speed);
-                } else if (down){
-                    player1.moveV(speed);
-                } else if (left){
-                    player1.moveH(-speed);
-                } else if (right){
-                    player1.moveH(speed);
-                }*/
-                //dc.repaint();
-                gameCanvas.repaint();
-            }
-        };
-        animationTimer = new Timer(interval, al);
-        animationTimer.start();
     }
 
     public void setUpKeyListener(){
@@ -132,25 +110,9 @@ public class GameFrame extends JFrame implements Runnable {
                     case PLAYING -> gameCanvas.getGame().getPlaying().keyPressed(ke);
                     case OPTIONS -> gameCanvas.getGame().getGameOptions().keyPressed(ke);
                     case CREDITS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
-                    case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+                    case QUIT -> System.exit(0);
                     default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
                     }
-                int keyCode = ke.getKeyCode();
-
-                switch(keyCode){
-                    case KeyEvent.VK_W:
-                        up = true;
-                        break;
-                    case KeyEvent.VK_S:
-                        down = true;
-                        break;
-                    case KeyEvent.VK_A:
-                        left = true;
-                        break;
-                    case KeyEvent.VK_D:
-                        right = true;
-                        break;
-                }
             }
 
             @Override
@@ -161,22 +123,6 @@ public class GameFrame extends JFrame implements Runnable {
                     case CREDITS, OPTIONS, QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
                     default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
                     }
-                /*int keyCode = ke.getKeyCode();
-
-                switch(keyCode){
-                    case KeyEvent.VK_W:
-                        up = false;
-                        break;
-                    case KeyEvent.VK_S:
-                        down = false;
-                        break;
-                    case KeyEvent.VK_A:
-                        left = false;
-                        break;
-                    case KeyEvent.VK_D:
-                        right = false;
-                        break;
-                }*/
             }
         };
         contentPane.addKeyListener(kl);

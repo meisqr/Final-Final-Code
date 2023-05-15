@@ -38,11 +38,6 @@ public class GameServer {
         numPlayers = 0;
         maxPlayers = 2;
 
-        p1x = 100;
-        p1y = 400;
-        p2x = 490;
-        p2y = 400;
-
         try{
             ss = new ServerSocket(45371);
         } catch (IOException ex){

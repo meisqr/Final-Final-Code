@@ -21,7 +21,7 @@ of my program.
 
 import java.awt.Graphics;
 
-public class Game implements Runnable {
+public class Game {
 
 	private Thread gameThread;
 	private final int FPS_SET = 120;
@@ -44,18 +44,12 @@ public class Game implements Runnable {
 	public Game() {
 		System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
 		initClasses();
-		startGameLoop();
 	}
 
 	private void initClasses() {
 		menu = new Menu(this);
 		playing = new Playing(this);
 		gameOptions = new GameOptions(this);
-	}
-
-	private void startGameLoop() {
-		gameThread = new Thread(this);
-		gameThread.start();
 	}
 
 	public void update() {
@@ -75,58 +69,7 @@ public class Game implements Runnable {
 		case OPTIONS -> gameOptions.draw(g);
 		}
 	}
-
-	@Override
-	public void run() {
-		double timePerFrame = 1000000000.0 / FPS_SET;
-		double timePerUpdate = 1000000000.0 / UPS_SET;
-
-		long previousTime = System.nanoTime();
-
-		int frames = 0;
-		int updates = 0;
-		long lastCheck = System.currentTimeMillis();
-
-		double deltaU = 0;
-		double deltaF = 0;
-
-		while (true) {
-
-			long currentTime = System.nanoTime();
-
-			deltaU += (currentTime - previousTime) / timePerUpdate;
-			deltaF += (currentTime - previousTime) / timePerFrame;
-			previousTime = currentTime;
-
-			if (deltaU >= 1) {
-
-				update();
-				updates++;
-				deltaU--;
-
-			}
-
-			if (deltaF >= 1) {
-
-				//gameCanvas.repaint();
-				frames++;
-				deltaF--;
-
-			}
-
-			if (SHOW_FPS_UPS)
-				if (System.currentTimeMillis() - lastCheck >= 1000) {
-
-					lastCheck = System.currentTimeMillis();
-					System.out.println("FPS: " + frames + " | UPS: " + updates);
-					frames = 0;
-					updates = 0;
-
-				}
-
-		}
-	}
-
+	
 	public void windowFocusLost() {
 		if (Gamestate.state == Gamestate.PLAYING)
 			playing.getPlayer().resetDirBooleans();

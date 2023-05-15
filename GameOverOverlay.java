@@ -74,8 +74,9 @@ public class GameOverOverlay {
 		play.setMouseOver(false);
 		menu.setMouseOver(false);
 
-		if (isIn(menu, e))
+		if (isIn(menu, e)){
 			menu.setMouseOver(true);
+		}
 		else if (isIn(play, e))
 			play.setMouseOver(true);
 	}
@@ -83,7 +84,7 @@ public class GameOverOverlay {
 	public void mouseReleased(MouseEvent e) {
 		if (isIn(menu, e)) {
 			if (menu.isMousePressed()) {
-				playing.resetAll();
+				menu.applyGamestate();
 				
 			}
 		} else if (isIn(play, e))

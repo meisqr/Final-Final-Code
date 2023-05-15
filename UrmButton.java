@@ -15,18 +15,26 @@ that has been clearly noted with a proper citation in the comments
 of my program.
 */
 
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class UrmButton extends PauseButton {
+public class UrmButton{
 	private BufferedImage[] imgs;
+	protected int x, y, width, height;
 	private int rowIndex, index;
 	private boolean mouseOver, mousePressed;
+	protected Rectangle bounds;
+	private Gamestate state;
 
 	public UrmButton(int x, int y, int width, int height, int rowIndex) {
-		super(x, y, width, height);
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 		this.rowIndex = rowIndex;
+		state = Gamestate.QUIT;
 		loadImgs();
+		createBounds();
 	}
 
 	private void loadImgs() {
@@ -71,4 +79,19 @@ public class UrmButton extends PauseButton {
 		this.mousePressed = mousePressed;
 	}
 
+	private void createBounds(){
+		bounds = new Rectangle(x, y, width, height);
+	}
+
+	public Rectangle getBounds(){
+		return bounds;
+	}
+
+	public void setBounds(Rectangle bounds){
+		this.bounds = bounds;
+	}
+
+	public void applyGamestate() {
+		Gamestate.state = state;
+	}
 }
