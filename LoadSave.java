@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+LoadSave class contains static methods for loading and saving images in a game. It has 
+methods for getting sprite atlases, loading levels, and getting individual images from files. 
+The class also contains a list of file names for different game assets.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
