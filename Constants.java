@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+The Constants class contains public static final variables that store values that will not change throughout the program. 
+The class also has nested classes that store constant values related to dialogues, projectiles, game objects, enemies, etc. 
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
