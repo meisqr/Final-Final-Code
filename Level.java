@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+Level class loads and stores information about the level map, including the location of different objects, enemies, and terrain tiles.
+The class provides various methods for accessing and manipulating this information, such as getting the player spawn point, getting lists 
+of enemies and objects, and getting the tile index at a particular location on the map.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
