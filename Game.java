@@ -1,17 +1,30 @@
-
+/**
+GameCanvas class .....
+@author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
+@version May 15,2023
+**/
+/*
+I have not discussed the Java language code in my program
+with anyone other than my instructor or the teaching assistants
+assigned to this course.
+I have not used Java language code obtained from another student,
+or any other unauthorized source, either modified or unmodified.
+If any Java language code or documentation used in my program
+was obtained from another source, such as a textbook or website,
+that has been clearly noted with a proper citation in the comments
+of my program.
+*/
 
 import java.awt.Graphics;
 
 public class Game implements Runnable {
 
-	//private GamePanel gamePanel;
 	private Thread gameThread;
 	private final int FPS_SET = 120;
 	private final int UPS_SET = 200;
 
 	private Playing playing;
 	Menu menu;
-//	private Credits credits;
 	GameOptions gameOptions;
 
 	public final static int TILES_DEFAULT_SIZE = 32;
@@ -27,16 +40,12 @@ public class Game implements Runnable {
 	public Game() {
 		System.out.println("size: " + GAME_WIDTH + " : " + GAME_HEIGHT);
 		initClasses();
-		//gamePanel = new GamePanel(this);
-		//new GameWindow(gamePanel);
-		//gamePanel.requestFocusInWindow();
 		startGameLoop();
 	}
 
 	private void initClasses() {
 		menu = new Menu(this);
 		playing = new Playing(this);
-//		credits = new Credits(this);
 		gameOptions = new GameOptions(this);
 	}
 
@@ -50,7 +59,6 @@ public class Game implements Runnable {
 		case MENU -> menu.update();
 		case PLAYING -> playing.update();
 		case OPTIONS -> gameOptions.update();
-//		case CREDITS -> credits.update();
 		case QUIT -> System.exit(0);
 		}
 	}
@@ -61,7 +69,6 @@ public class Game implements Runnable {
 		case MENU -> menu.draw(g);
 		case PLAYING -> playing.draw(g);
 		case OPTIONS -> gameOptions.draw(g);
-//		case CREDITS -> credits.draw(g);
 		}
 	}
 
@@ -128,10 +135,6 @@ public class Game implements Runnable {
 	public Playing getPlaying() {
 		return playing;
 	}
-
-//	public Credits getCredits() {
-//		return credits;
-//	}
 
 	public GameOptions getGameOptions() {
 		return gameOptions;
