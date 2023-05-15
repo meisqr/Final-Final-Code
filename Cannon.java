@@ -4,6 +4,7 @@ The constructor initializes the cannon object with an x-coordinate, a y-coordina
 The class has a tileY property, an initHitbox method for setting the hitbox properties of the object, an 
 update method, and a getter method for the tileY property. The update method checks if the object needs 
 animation and updates the animation tick.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
