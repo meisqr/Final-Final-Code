@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+This is a class called Menu, which extends another class called State and implements an interface called Statemethods. 
+It contains several methods that handle the loading, updating, and drawing of a menu screen, including button 
+objects that are interacted with using mouse events.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
