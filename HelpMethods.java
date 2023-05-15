@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+HelpMethods is a class with several static methods that implement various game logic checks. 
+CanMoveHere checks if an object can move to a given position, IsProjectileHittingLevel checks if a 
+projectile has hit a solid object, IsEntityInWater checks if an entity is touching water, and so on.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
