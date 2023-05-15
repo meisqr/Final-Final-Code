@@ -1,6 +1,6 @@
 /**
-GameCanvas class, which extends JComponent and is responsible for painting the game graphics. 
-It creates instances of the Player, Playing, and Game classes and uses their methods to draw the game's background, 
+GameCanvas class extends JComponent and is responsible for painting the game graphics. 
+It also creates instances of the Player, Playing, and Game classes and uses their methods to draw the game's background, 
 levels, objects, enemies, players, and dialogue. The GameCanvas also updates the game and player positions.
 
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
