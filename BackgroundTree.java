@@ -1,5 +1,9 @@
 /**
-GameCanvas class .....
+BackgroundTree is a class that represents a tree object with properties such as x-coordinate, y-coordinate, type, and animation index. 
+The constructor initializes these properties with input values and sets a random animation index value. 
+The class also has update and getter/setter methods for these properties. 
+The update method updates the animation index property after a certain interval.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
