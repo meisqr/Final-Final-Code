@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+UrmButton is a class for creating a button with a custom image. It has methods for updating and drawing 
+the button based on mouse behavior, and it also includes a rectangle for collision detection. Additionally, 
+it has a method for setting the game state when the button is clicked.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
