@@ -8,7 +8,6 @@ public class GameCanvas extends JComponent{
     private Player player1, player2;
     private Playing playing;
     public Game game;
-    // add components
 
     public GameCanvas(int w, int h){
         width = w;
@@ -17,7 +16,6 @@ public class GameCanvas extends JComponent{
         playing = new Playing(game);
         player1 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing,1);
         player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing,2);
-        // add components
     }
 
     @Override
@@ -48,9 +46,9 @@ public class GameCanvas extends JComponent{
 		case MENU -> game.menu.draw(g);
 		case PLAYING -> playing.draw(g);
 		case OPTIONS -> game.gameOptions.draw(g);
-        case CREDITS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
-        case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
-        default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
+        	case CREDITS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+        	case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
+       		default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
 		}
 	}
 
