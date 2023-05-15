@@ -1,5 +1,9 @@
 /**
-GameCanvas class .....
+GameCompletedOverlay class creates a game overlay that is shown when the game is completed. 
+It includes a background image, two menu buttons ("quit" and "credit"), and methods for handling 
+mouse events. The class is dependent on other classes and methods for loading images, defining 
+button behavior, and updating game state.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

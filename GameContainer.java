@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+The GameContainer class extends the GameObject class and creates containers in the game. 
+It creates a hitbox for the container depending on its type and updates the animation tick if it is currently animating.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
