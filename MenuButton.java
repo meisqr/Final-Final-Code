@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+The MenuButton class creates a button on a menu screen in a game. It contains an image and c
+an be interacted with using mouse events to trigger a Gamestate change when clicked.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
