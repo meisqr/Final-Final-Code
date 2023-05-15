@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+Playing class extends the class "State" and implements the interface "Statemethods". It contains various fields, 
+such as Player, LevelManager, EnemyManager, ObjectManager, and different overlays. Its methods include loading levels, 
+updating the game state, and drawing dialogue.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
