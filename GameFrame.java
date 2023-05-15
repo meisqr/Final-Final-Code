@@ -1,5 +1,9 @@
 /**
-GameCanvas class .....
+GameFrame is a class that extends the JFrame class and implements the Runnable interface. 
+It sets up a GUI for a game, and contains variables and methods to control the game loop, 
+animation timer, and player movements. The class also has variables for the game canvas, player 
+IDs, IP addresses, and sockets to connect to a server.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
