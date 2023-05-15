@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.util.*;
 import javax.swing.*;
@@ -47,7 +48,6 @@ public class GameCanvas extends JComponent{
 		case MENU -> game.menu.draw(g);
 		case PLAYING -> playing.draw(g);
 		case OPTIONS -> game.gameOptions.draw(g);
-//		case CREDITS -> credits.draw(g);
         case CREDITS -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
         case QUIT -> throw new UnsupportedOperationException("Unimplemented case: " + Gamestate.state);
         default -> throw new IllegalArgumentException("Unexpected value: " + Gamestate.state);
