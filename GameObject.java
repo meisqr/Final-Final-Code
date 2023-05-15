@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+GameObject class defines properties and methods for game objects, including their position, type, 
+hitbox, animation, and other attributes. It includes methods for updating animations, resetting the 
+object, initializing hitboxes, and drawing hitboxes. The class is designed to be used in a game development context.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
