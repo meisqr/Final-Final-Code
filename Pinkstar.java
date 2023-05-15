@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+Pinkstar class extends another class called "Enemy". It has several fields and methods that define its 
+behavior, such as updating its behavior, checking for damage to the player, setting its walk direction, and moving.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
