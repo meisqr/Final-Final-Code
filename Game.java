@@ -1,5 +1,9 @@
 /**
-GameCanvas class .....
+Game class implements the Runnable interface, which allows the class to be executed as a thread. 
+The class contains methods for updating and rendering the game, as well as initializing classes for 
+the game's menu, gameplay, and game options. It also includes a game loop that continually updates 
+and renders the game, while tracking the frames per second (FPS) and updates per second (UPS).
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
