@@ -56,7 +56,9 @@ public class GameCanvas extends JComponent{
         playing.drawDialogue(g, playing.xLvlOffset);
 
         game.render(g2d);
+        playing.update();
         player1.update();
+        player2.update();
         
     }
     /*
