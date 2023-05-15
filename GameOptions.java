@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+The GameOptions class is a state in the game that creates the options menu. It loads and 
+displays images, creates and manages a button, and handles mouse and key events.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
