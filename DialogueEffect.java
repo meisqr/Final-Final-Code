@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+The class DialogueEffect represents a speech bubble animation displayed for enemies in the game. 
+It has attributes for the position, type of animation, animation index, and active status. 
+The class has methods to update the animation, deactivate it, reset its position, and retrieve its attributes.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
