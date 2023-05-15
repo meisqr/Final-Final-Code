@@ -1,5 +1,9 @@
 /**
-GameCanvas class .....
+Game server class can handle connections from up to two players. The server listens on a 
+port and waits for players to connect. When two players have connected, the server creates 
+threads to handle communication with each player. The class includes inner classes ReadFromClient 
+and WriteToClient, which implement the logic for reading and writing data to and from the clients.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
