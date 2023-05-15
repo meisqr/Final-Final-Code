@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+Crabby class extends the Enemy class and has a constructor that sets certain properties and initializes hitbox and attack box. 
+It also has an "update" method that calls other methods to update the enemy's behavior, animation, and attack. One of its methods 
+has a switch statement that handles the different states of the enemy, such as idle, running, attacking, and being hit.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
