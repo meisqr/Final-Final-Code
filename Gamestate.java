@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+Gamestate is an enumeration class with 5 predefined values representing the possible states of a game. 
+The "state" variable is static and can be accessed and changed from any part of the code.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
