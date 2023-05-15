@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+Entity is an abstract class which is used for creating game entities that have certain properties and methods. 
+It includes variables and methods for the entity's position, size, health, movement, animation, and hitboxes for 
+both attacks and collisions. The class is intended to be extended by other classes to create specific types of game entities.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

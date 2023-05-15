@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+EnemyManager manages enemies in the game. It has methods to load and update enemies, 
+draw them on the screen, and check for collisions between enemies and the player. 
+The class also loads enemy images and holds them in arrays.
 
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023

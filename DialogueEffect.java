@@ -1,5 +1,5 @@
 /**
-The class DialogueEffect represents a speech bubble animation displayed for enemies in the game. 
+The class DialogueEffect is for a speech bubble animation displayed for enemies in the game. 
 It has attributes for the position, type of animation, animation index, and active status. 
 The class has methods to update the animation, deactivate it, reset its position, and retrieve its attributes.
 
