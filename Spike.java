@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+The Spike class is a subclass of GameObject and represents a spike object. 
+It initializes the hitbox and draw offset of the spike.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
