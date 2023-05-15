@@ -1,5 +1,6 @@
 /**
 GameCanvas class .....
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

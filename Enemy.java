@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+Enemy is an abstract class which extends another class called Entity. It contains variables 
+and methods that are shared among all enemy objects in the game. The class also defines several 
+methods for updating the enemy's behavior.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
