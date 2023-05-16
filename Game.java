@@ -27,7 +27,7 @@ public class Game {
 	private final int FPS_SET = 120;
 	private final int UPS_SET = 200;
 
-	private Playing playing;
+	private Playing playing1, playing2;
 	Menu menu;
 	GameOptions gameOptions;
 
@@ -48,14 +48,15 @@ public class Game {
 
 	private void initClasses() {
 		menu = new Menu(this);
-		playing = new Playing(this);
+		playing1 = new Playing(this,2);
+		playing2 = new Playing(this,1);
 		gameOptions = new GameOptions(this);
 	}
 
 	public void update() {
 		switch (Gamestate.state) {
 		case MENU -> menu.update();
-		case PLAYING -> playing.update();
+		case PLAYING -> playing1.update();
 		case OPTIONS -> gameOptions.update();
 		case QUIT -> System.exit(0);
 		}
@@ -65,14 +66,14 @@ public class Game {
 	public void render(Graphics g) {
 		switch (Gamestate.state) {
 		case MENU -> menu.draw(g);
-		case PLAYING -> playing.draw(g);
+		case PLAYING -> playing1.draw(g);
 		case OPTIONS -> gameOptions.draw(g);
 		}
 	}
 	
 	public void windowFocusLost() {
 		if (Gamestate.state == Gamestate.PLAYING)
-			playing.getPlayer().resetDirBooleans();
+			playing1.getPlayer().resetDirBooleans();
 	}
 
 	public Menu getMenu() {
@@ -80,16 +81,16 @@ public class Game {
 	}
 
 	public Playing getPlaying() {
-		return playing;
+		return playing1;
+	}
+
+	public Playing getPlaying2(){
+		return playing2;
 	}
 
 	public GameOptions getGameOptions() {
 		return gameOptions;
 	}
 
-	public boolean setPlayingNumber1(){
-		boolean player1Bool = true;
-		return player1Bool;
-	}
-
+	
 }

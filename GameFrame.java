@@ -64,7 +64,7 @@ public class GameFrame extends JFrame implements Runnable {
         down = false;
         left = false;
         right = false;
-        playing = new Playing(newGame);
+        playing = new Playing(newGame,2);
         gameCanvas = new GameCanvas(w, h);
     }
 
@@ -93,13 +93,11 @@ public class GameFrame extends JFrame implements Runnable {
 
     private void createSprites(){
         if(playerID == 1) {
-            // 
-            //player1 = gameCanvas.getGame().getPlaying().createPlayer(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing, 1);
-            //getPlayer();
-            //playing.createPlayer(playerID);
-            player2 = gameCanvas.getGame().getPlaying().getPlayer();
+            player1 = gameCanvas.getGame().getPlaying().getPlayer();
+            player2 = gameCanvas.getGame().getPlaying2().getPlayer();
         } else{
-            playerNum = 2;
+            player2 = gameCanvas.getGame().getPlaying().getPlayer();
+            player1 = gameCanvas.getGame().getPlaying2().getPlayer();
         }
     }
 
@@ -313,8 +311,8 @@ public class GameFrame extends JFrame implements Runnable {
                     double player2X = dataIn.readDouble();
                     double player2Y = dataIn.readDouble();
                     if(player2 != null){
-                        player2.setX(player2X);
-                        player2.setY(player2Y);
+                        //player2.setX(player2X);
+                        //player2.setY(player2Y);
                     }
                 }
 

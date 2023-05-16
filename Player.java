@@ -69,13 +69,12 @@ public class Player extends Entity {
 	private int powerAttackTick;
 	private int powerGrowSpeed = 15;
 	private int powerGrowTick;
-	private double xCoord, yCoord;
+	
 	private int playerNumber;
 
 	public Player(float x, float y, int width, int height, Playing playing, int num) {
 		super(x, y, width, height);
-		xCoord = (double) this.x;
-		yCoord = (double) this.y;
+		
 		this.playing = playing;
 		playerNumber = num;
 		this.state = Constants.PlayerConstants.IDLE;
@@ -90,8 +89,6 @@ public class Player extends Entity {
 	public void setSpawn(Point spawn) {
 		this.x = spawn.x;
 		this.y = spawn.y;
-		xCoord = spawn.x;
-		yCoord = spawn.y;
 		hitbox.x = x;
 		hitbox.y = y;
 	}
@@ -522,7 +519,7 @@ public class Player extends Entity {
 
 	}
 
-	public void moveH(double n){
+	/*public void moveH(double n){
 		xCoord += n;
 	}
 
@@ -536,14 +533,14 @@ public class Player extends Entity {
 
 	public void setY(double n){
 		yCoord = n;
-	}
+	}*/
 
-	public double getX(){
-		return xCoord;
+	public float getX(){
+		return super.getX();
 	}
 
 	public double getY(){
-		return yCoord;
+		return y;
 	}
 
 

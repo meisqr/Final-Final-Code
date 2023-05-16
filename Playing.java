@@ -27,6 +27,9 @@ import java.util.ArrayList;
 public class Playing extends State implements Statemethods {
 
 	private Player player;
+	// try and fix and make two instances(?) of players to make it 
+	// multiplayer before networking to get and pass the cooordinates
+	// etc etc <3
 	LevelManager levelManager;
 	EnemyManager enemyManager;
 	ObjectManager objectManager;
@@ -55,6 +58,7 @@ public class Playing extends State implements Statemethods {
 	public boolean gameCompleted;
 	public boolean playerDying;
 
+	private int playerNum;
 
 	
 	// If you would like to have it on more levels, add a value for objects when
@@ -64,9 +68,10 @@ public class Playing extends State implements Statemethods {
 	// you want
 	// it.
 
-	public Playing(Game game) {
+	public Playing(Game game, int num) {
 		super(game);
 		initClasses();
+		playerNum = num;
 
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.PLAYING_BG_IMG);
 		bigCloud = LoadSave.GetSpriteAtlas(LoadSave.BIG_CLOUDS);
@@ -125,23 +130,15 @@ public class Playing extends State implements Statemethods {
 		maxLvlOffsetX = levelManager.getCurrentLevel().getLvlOffset();
 	}
 
-	///public void createPlayer(int num){
-		//plynum = num;
-		//player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, num);
-	//}
-
-	//private void createPlayer2(){
-	//	player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 2);
-	//}
-
+	
 	private void initClasses() {
 		levelManager = new LevelManager(game);
 		enemyManager = new EnemyManager(this);
 		objectManager = new ObjectManager(this);
-
-		//createPlayer(plynum);
-		//System.out.println(plynum);
-		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1);
+		
+		//player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1); // figure out a way to change the num
+		makeAPlayer2();
+		
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 
@@ -393,5 +390,13 @@ public class Playing extends State implements Statemethods {
 
 	public void setPlayerDying(boolean playerDying) {
 		this.playerDying = playerDying;
+	}
+
+	public void makeAPlayer1(){
+		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1);
+	}
+
+	public void makeAPlayer2(){
+		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 2);
 	}
 }

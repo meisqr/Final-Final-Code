@@ -104,4 +104,8 @@ public abstract class Entity {
 		aniTick = 0;
 		aniIndex = 0;
 	}
+
+	public float getX(){
+		return x;
+	}
 }

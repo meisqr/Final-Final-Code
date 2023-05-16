@@ -31,6 +31,8 @@ public class GameCanvas extends JComponent{
         width = w;
         height = h;
         game = new Game();
+        player1 = game.getPlaying().getPlayer();
+        player2 = game.getPlaying2().getPlayer();
     }
 
     @Override
@@ -44,19 +46,20 @@ public class GameCanvas extends JComponent{
         
         game.getPlaying().drawClouds(g);
         
-        game.getPlaying().levelManager.draw(g, game.getPlaying().xLvlOffset);
+        game.getPlaying().levelManager.draw(g, game.getPlaying().  xLvlOffset);
         game.getPlaying().objectManager.draw(g, game.getPlaying().xLvlOffset);
         game.getPlaying().objectManager.drawBackgroundTrees(g2d, game.getPlaying().xLvlOffset);
         game.getPlaying().enemyManager.draw(g, game.getPlaying().xLvlOffset);
 
-        game.getPlaying().getPlayer().render(g2d, game.getPlaying().xLvlOffset);
-        
+        player2.render(g2d, game.getPlaying2().xLvlOffset);
+        player1.render(g2d, game.getPlaying().xLvlOffset);
 
         game.getPlaying().objectManager.drawBackgroundTrees(g, game.getPlaying().xLvlOffset);
         game.getPlaying().drawDialogue(g, game.getPlaying().xLvlOffset);
 
         game.render(g2d);
         game.getPlaying().update();
+        
         
         
     }
