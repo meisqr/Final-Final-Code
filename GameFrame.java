@@ -30,16 +30,15 @@ import java.net.*;
 public class GameFrame extends JFrame implements Runnable {
     private Thread gameThread;
     private final int FPS_SET = 120;
-	private final int UPS_SET = 200;
+    private final int UPS_SET = 200;
     public final static int TILES_DEFAULT_SIZE = 32;
-	public final static float SCALE = 1f;
-	public final static int TILES_IN_WIDTH = 26;
-	public final static int TILES_IN_HEIGHT = 14;
-	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
-	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
-	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
-
-	private final boolean SHOW_FPS_UPS = true;
+    public final static float SCALE = 1f;
+    public final static int TILES_IN_WIDTH = 26;
+    public final static int TILES_IN_HEIGHT = 14;
+    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+    private final boolean SHOW_FPS_UPS = true;
     private int width, height;
     private Container contentPane;
     private Player player1, player2;
