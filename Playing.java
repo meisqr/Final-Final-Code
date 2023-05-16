@@ -55,6 +55,7 @@ public class Playing extends State implements Statemethods {
 	public boolean gameCompleted;
 	public boolean playerDying;
 
+
 	
 	// If you would like to have it on more levels, add a value for objects when
 	// creating the level from lvlImgs. Just like any other object.
@@ -124,11 +125,22 @@ public class Playing extends State implements Statemethods {
 		maxLvlOffsetX = levelManager.getCurrentLevel().getLvlOffset();
 	}
 
+	///public void createPlayer(int num){
+		//plynum = num;
+		//player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, num);
+	//}
+
+	//private void createPlayer2(){
+	//	player2 = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 2);
+	//}
+
 	private void initClasses() {
 		levelManager = new LevelManager(game);
 		enemyManager = new EnemyManager(this);
 		objectManager = new ObjectManager(this);
 
+		//createPlayer(plynum);
+		//System.out.println(plynum);
 		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1);
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
@@ -364,6 +376,8 @@ public class Playing extends State implements Statemethods {
 	public Player getPlayer() {
 		return player;
 	}
+
+	
 
 	public EnemyManager getEnemyManager() {
 		return enemyManager;

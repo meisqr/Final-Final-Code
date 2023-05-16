@@ -87,4 +87,9 @@ public class Game {
 		return gameOptions;
 	}
 
+	public boolean setPlayingNumber1(){
+		boolean player1Bool = true;
+		return player1Bool;
+	}
+
 }

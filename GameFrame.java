@@ -93,7 +93,11 @@ public class GameFrame extends JFrame implements Runnable {
 
     private void createSprites(){
         if(playerID == 1) {
-            playerNum = 1;
+            // 
+            //player1 = gameCanvas.getGame().getPlaying().createPlayer(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), playing, 1);
+            //getPlayer();
+            //playing.createPlayer(playerID);
+            player2 = gameCanvas.getGame().getPlaying().getPlayer();
         } else{
             playerNum = 2;
         }
