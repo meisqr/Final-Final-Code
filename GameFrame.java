@@ -351,6 +351,11 @@ public class GameFrame extends JFrame implements Runnable {
                         dataOut.writeDouble(player1.getY());
                         dataOut.flush();
                     }
+		   else if(player2 != null){
+                        dataOut.writeDouble(player2.getX());
+                        dataOut.writeDouble(player2.getY());
+                        dataOut.flush();
+                    }
                     try{
                         Thread.sleep(25);
                     } catch (InterruptedException ex){
