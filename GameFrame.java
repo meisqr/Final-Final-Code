@@ -56,7 +56,6 @@ public class GameFrame extends JFrame implements Runnable {
     private Game newGame;
     private Playing playing;
     private GameCanvas gameCanvas;
-    private EnemyManager enemyManager;
     private float crabbyX, crabbyY;
 
 
@@ -68,7 +67,6 @@ public class GameFrame extends JFrame implements Runnable {
         left = false;
         right = false;
         gameCanvas = new GameCanvas(w, h);
-        enemyManager = gameCanvas.getGame().getPlaying().getEnemyManager();
     }
 
     public void setUpGUI(){
@@ -281,9 +279,9 @@ public class GameFrame extends JFrame implements Runnable {
 			playing.getPlayer().resetDirBooleans();
 	}
 
-    public void connectToServer(){
+    public void connectToServer(String ipAddress){
         try{
-            socket = new Socket("localhost", 45371);
+            socket = new Socket(ipAddress, 55555);
             DataInputStream in = new DataInputStream(socket.getInputStream());
             DataOutputStream out = new DataOutputStream(socket.getOutputStream());
             playerID = in.readInt();

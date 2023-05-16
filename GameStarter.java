@@ -18,11 +18,14 @@ that has been clearly noted with a proper citation in the comments
 of my program.
 */
 
+import java.util.*;
 public class GameStarter{
     
     public static void main(String[] args){
         GameFrame gf = new GameFrame(Game.GAME_WIDTH,Game.GAME_HEIGHT);
-        gf.connectToServer();
+        Scanner in = new Scanner(System.in);
+        System.out.print("IP Address: ");
+        gf.connectToServer(in.nextLine());
         gf.setUpGUI();
         
     }

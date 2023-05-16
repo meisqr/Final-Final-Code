@@ -43,7 +43,7 @@ public class GameServer {
         maxPlayers = 2;
 
         try{
-            ss = new ServerSocket(45371);
+            ss = new ServerSocket(55555);
         } catch (IOException ex){
             System.out.println("IOException from src.main.GameServer constructor");
         }
