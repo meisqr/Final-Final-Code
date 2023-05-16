@@ -106,6 +106,10 @@ public abstract class Entity {
 	}
 
 	public float getX(){
-		return x;
+		return hitbox.x;
+	}
+
+	public float getY(){
+		return hitbox.y;
 	}
 }

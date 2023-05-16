@@ -24,7 +24,7 @@ import javax.swing.*;
 
 public class GameCanvas extends JComponent{
     private int width, height;
-    private Player player1, player2;
+    public Player player1, player2;
     public Game game;
 
     public GameCanvas(int w, int h){
@@ -61,11 +61,17 @@ public class GameCanvas extends JComponent{
         game.getPlaying().update();
         
         
-        
     }
-
 
     public Game getGame(){
         return game;
+    }
+
+    public Player getPlayer1(){
+        return player1;
+    }
+
+    public Player getPlayer2(){
+        return player2;
     }
 }

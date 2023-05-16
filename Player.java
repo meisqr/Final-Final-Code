@@ -77,7 +77,6 @@ public class Player extends Entity {
 
 	public Player(float x, float y, int width, int height, Playing playing, int num) {
 		super(x, y, width, height);
-		
 		this.playing = playing;
 		playerNumber = num;
 		this.state = Constants.PlayerConstants.IDLE;
@@ -522,29 +521,20 @@ public class Player extends Entity {
 
 	}
 
-	/*public void moveH(double n){
-		xCoord += n;
-	}
-
-	public void moveV(double n){
-		yCoord +=n;
-	}
-
-	public void setX(double n){
-		xCoord = n;
-	}
-
-	public void setY(double n){
-		yCoord = n;
-	}*/
-
 	public float getX(){
 		return super.getX();
 	}
 
-	public double getY(){
-		return y;
+	public float getY(){
+		return super.getY();
 	}
 
+	public void setX(float newValue){
+		hitbox.x = newValue;
+	}
+
+	public void setY(float newValue){
+		hitbox.y = newValue;
+	}
 
 }

@@ -34,7 +34,7 @@ public class GameServer {
     private WriteToClient p1WriteRunnable;
     private WriteToClient p2WriteRunnable;
 
-    private double p1x, p1y, p2x, p2y;
+    private float p1x, p1y, p2x, p2y;
 
 
     public GameServer(){
@@ -108,11 +108,11 @@ public class GameServer {
                 while(true){
                     //dagdagcrab
                     if(playerID == 1){
-                        p1x = dataIn.readDouble();
-                        p1y = dataIn.readDouble();
+                        p1x = dataIn.readFloat();
+                        p1y = dataIn.readFloat();
                     } else {
-                        p2x = dataIn.readDouble();
-                        p2y = dataIn.readDouble();
+                        p2x = dataIn.readFloat();
+                        p2y = dataIn.readFloat();
                     }
                 }
             } catch (IOException ex){
@@ -136,13 +136,13 @@ public class GameServer {
             try{
                 while(true){
                     if(playerID == 1){
-                        dataOut.writeDouble(p2x);
-                        dataOut.writeDouble(p2y);
+                        dataOut.writeFloat(p2x);
+                        dataOut.writeFloat(p2y);
                         //crab
                         dataOut.flush();
                     } else{
-                        dataOut.writeDouble(p1x);
-                        dataOut.writeDouble(p1y);
+                        dataOut.writeFloat(p1x);
+                        dataOut.writeFloat(p1y);
                         //crab
                         dataOut.flush();
                     }
