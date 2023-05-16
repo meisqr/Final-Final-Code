@@ -106,6 +106,7 @@ public class GameServer {
         public void run(){
             try{
                 while(true){
+                    //dagdagcrab
                     if(playerID == 1){
                         p1x = dataIn.readDouble();
                         p1y = dataIn.readDouble();
@@ -137,10 +138,12 @@ public class GameServer {
                     if(playerID == 1){
                         dataOut.writeDouble(p2x);
                         dataOut.writeDouble(p2y);
+                        //crab
                         dataOut.flush();
                     } else{
                         dataOut.writeDouble(p1x);
                         dataOut.writeDouble(p1y);
+                        //crab
                         dataOut.flush();
                     }
                     try{

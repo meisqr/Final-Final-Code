@@ -30,15 +30,16 @@ import java.net.*;
 public class GameFrame extends JFrame implements Runnable {
     private Thread gameThread;
     private final int FPS_SET = 120;
-    private final int UPS_SET = 200;
+	private final int UPS_SET = 200;
     public final static int TILES_DEFAULT_SIZE = 32;
-    public final static float SCALE = 1f;
-    public final static int TILES_IN_WIDTH = 26;
-    public final static int TILES_IN_HEIGHT = 14;
-    public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
-    public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
-    public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
-    private final boolean SHOW_FPS_UPS = true;
+	public final static float SCALE = 1f;
+	public final static int TILES_IN_WIDTH = 26;
+	public final static int TILES_IN_HEIGHT = 14;
+	public final static int TILES_SIZE = (int) (TILES_DEFAULT_SIZE * SCALE);
+	public final static int GAME_WIDTH = TILES_SIZE * TILES_IN_WIDTH;
+	public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
+
+	private final boolean SHOW_FPS_UPS = true;
     private int width, height;
     private Container contentPane;
     private Player player1, player2;
@@ -305,22 +306,24 @@ public class GameFrame extends JFrame implements Runnable {
         public void run(){
             try{
                 while(true){
-			if(playerID == 1){
-				double player2X = dataIn.readDouble();
-                       		double player2Y = dataIn.readDouble();		
-			if(player2 != null){
-                      		 player2.setX(player2X);
-                       		 player2.setY(player2Y);
-                        }	
-			}else if (playerID == 2){
-                                double player1X = dataIn.readDouble();
-                       		double player1Y = dataIn.readDouble();		
-			if(player1 != null){
-                      		 player1.setX(player1X);
-                       		 player1.setY(player1Y);
-		  	}
-                }
-
+			        if(playerID == 1) {
+                        //crab
+						double player2X = dataIn.readDouble();
+						double player2Y = dataIn.readDouble();
+						if (player2 != null) {
+							player2.setX(player2X);
+							player2.setY(player2Y);
+						}
+                    }else if (playerID == 2){
+                        //crab
+						double player1X = dataIn.readDouble();
+						double player1Y = dataIn.readDouble();
+						if(player1 != null){
+							player1.setX(player1X);
+							player1.setY(player1Y);
+		  	           }
+                    }
+				}
             } catch(IOException ex){
                 System.out.println("IOException from RFS run()");
             }
@@ -353,12 +356,13 @@ public class GameFrame extends JFrame implements Runnable {
             try{
 
                 while(true){
+
                     if(player1 != null){
                         dataOut.writeDouble(player1.getX());
                         dataOut.writeDouble(player1.getY());
                         dataOut.flush();
                     }
-		   else if(player2 != null){
+					else if(player2 != null){
                         dataOut.writeDouble(player2.getX());
                         dataOut.writeDouble(player2.getY());
                         dataOut.flush();
