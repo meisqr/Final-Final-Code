@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+Shark class extends the Enemy class and defines the behavior and properties of a shark enemy in a game. 
+It has methods for updating the enemy's position and behavior based on the game state and player actions.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

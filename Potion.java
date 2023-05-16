@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+Potion class extends the "GameObject" class. It contains variables for the object's hover offset, maximum hover offset,
+and direction of hover, as well as methods for updating the object's animation and hover.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

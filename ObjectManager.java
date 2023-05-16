@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+This is a class called ObjectManager that manages the objects in the game such as potions, containers, and 
+projectiles. It contains methods for checking collisions and updating object states.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

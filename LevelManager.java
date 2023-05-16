@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+LevelManager class manages different levels in a game. It loads levels, creates water, draws 
+the game screen and updates water animation using Java's Graphics and BufferedImage classes.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

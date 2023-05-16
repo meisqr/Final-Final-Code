@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+Statemethods interface defines the methods that must be implemented by any class that represents a state in the game. 
+These methods include updating and drawing the state, handling mouse and keyboard events, and so on.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

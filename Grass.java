@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+Grass class represents a patch of grass in a game. It has attributes for its x and y coordinates and the type of grass it is, 
+as well as getter methods for these attributes.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

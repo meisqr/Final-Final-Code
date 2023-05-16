@@ -1,5 +1,7 @@
 /**
-GameCanvas class .....
+State is an abstract class representing a state in a game, with a method to check if a mouse 
+event occurred within the bounds of a given menu button and a getter method for the game object.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
@@ -16,7 +18,6 @@ of my program.
 */
 
 import java.awt.event.MouseEvent;
-
 
 public class State {
 

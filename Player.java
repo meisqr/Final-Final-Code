@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+Player class extends from another class called "Entity". It contains various properties and methods related to 
+the behavior and appearance of a player character in a 2D platformer game, such as animations, movement, attack, 
+health and power bars, and collision detection with the environment.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/

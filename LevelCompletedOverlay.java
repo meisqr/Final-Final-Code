@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+LevelCompletedOverlay class creates a graphical overlay that appears when a level is completed 
+in a game. It contains two buttons for navigating to the next level or the main menu, and methods 
+for handling user mouse input.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
@@ -14,7 +17,6 @@ was obtained from another source, such as a textbook or website,
 that has been clearly noted with a proper citation in the comments
 of my program.
 */
-
 
 import java.awt.Color;
 import java.awt.Graphics;

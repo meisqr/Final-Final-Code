@@ -1,5 +1,8 @@
 /**
-GameCanvas class .....
+Playing class extends the class "State" and implements the interface "Statemethods". It contains various fields, 
+such as Player, LevelManager, EnemyManager, ObjectManager, and different overlays. Its methods include loading levels, 
+updating the game state, and drawing dialogue.
+
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
 **/
@@ -135,10 +138,9 @@ public class Playing extends State implements Statemethods {
 		levelManager = new LevelManager(game);
 		enemyManager = new EnemyManager(this);
 		objectManager = new ObjectManager(this);
-		
-		//player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1); // figure out a way to change the num
-		makeAPlayer2();
-		
+
+		player = new Player(150, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1);
+		player = new Player(160, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 2);
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 
@@ -392,11 +394,5 @@ public class Playing extends State implements Statemethods {
 		this.playerDying = playerDying;
 	}
 
-	public void makeAPlayer1(){
-		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1);
-	}
-
-	public void makeAPlayer2(){
-		player = new Player(200, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 2);
-	}
+	
 }
