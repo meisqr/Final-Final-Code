@@ -232,4 +232,19 @@ public abstract class Enemy extends Entity {
 		return pushDrawOffset;
 	}
 
+	public float getX(){
+		return super.getX();
+	}
+
+	public float getY(){
+		return super.getY();
+	}
+
+	public void setX(float newValue){
+		hitbox.x = newValue;
+	}
+
+	public void setY(float newValue){
+		hitbox.y = newValue;
+	}
 }

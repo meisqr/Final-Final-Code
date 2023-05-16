@@ -43,6 +43,7 @@ public class GameFrame extends JFrame implements Runnable {
     private int width, height;
     private Container contentPane;
     private Player player1, player2;
+    private Enemy crabby;
     //private DrawingComponent dc;
     private Timer animationTimer;
     private Boolean up, down, left, right;
@@ -56,6 +57,7 @@ public class GameFrame extends JFrame implements Runnable {
     private Playing playing;
     private GameCanvas gameCanvas;
     private EnemyManager enemyManager;
+    private float crabbyX, crabbyY;
 
 
     public GameFrame(int w, int h){
@@ -96,6 +98,7 @@ public class GameFrame extends JFrame implements Runnable {
         if(playerID == 1) {
             player1 = gameCanvas.getPlayer1();
             player2 = gameCanvas.getPlayer2();
+            crabby = new Crabby(EXIT_ON_CLOSE, playerID);
         } else{
             player2 = gameCanvas.getPlayer1();
             player1 = gameCanvas.getPlayer2();
@@ -309,6 +312,7 @@ public class GameFrame extends JFrame implements Runnable {
         public void run(){
             try{
                 while(true){
+                    
 			        if(playerID == 1) {
                         //crab
 						float player2X = dataIn.readFloat();
@@ -359,22 +363,27 @@ public class GameFrame extends JFrame implements Runnable {
             try{
 
                 while(true){
-
-                    if(player1 != null){
-                        dataOut.writeFloat(player1.getX());
-                        dataOut.writeFloat(player1.getY());
-                        dataOut.flush();
+                    if (player1 != null){
+                        if(playerID == 1){
+                            dataOut.writeFloat(player1.getX());
+                            dataOut.writeFloat(player1.getY());
+                            dataOut.flush();
+                        }
+                        else if(player2 != null && playerID == 2){
+                            dataOut.writeFloat(player2.getX());
+                            dataOut.writeFloat(player2.getY());
+                            dataOut.flush();
+                        }
                     }
-					else if(player2 != null){
-                        dataOut.writeFloat(player2.getX());
-                        dataOut.writeFloat(player2.getY());
-                        dataOut.flush();
+                    
+                    if (player1 != null){
+                        try{
+                            Thread.sleep(25);
+                        } catch (InterruptedException ex){
+                            System.out.println("InterruptedException from WTS run()");
+                        }
                     }
-                    try{
-                        Thread.sleep(25);
-                    } catch (InterruptedException ex){
-                        System.out.println("InterruptedException from WTS run()");
-                    }
+                    
                 }
 
             } catch(IOException ex){

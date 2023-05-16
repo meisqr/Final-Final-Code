@@ -73,4 +73,21 @@ public class Crabby extends Enemy {
 		}
 	}
 
+	public float getX(){
+		return super.getX();
+	}
+
+	public float getY(){
+		return super.getY();
+	}
+
+	public void setX(float newValue){
+		hitbox.x = newValue;
+		System.out.println(hitbox.x);
+	}
+
+	public void setY(float newValue){
+		hitbox.y = newValue;
+	}
+
 }
