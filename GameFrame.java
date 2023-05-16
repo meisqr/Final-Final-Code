@@ -306,12 +306,20 @@ public class GameFrame extends JFrame implements Runnable {
         public void run(){
             try{
                 while(true){
-                    double player2X = dataIn.readDouble();
-                    double player2Y = dataIn.readDouble();
-                    if(player2 != null){
-                        player2.setX(player2X);
-                        player2.setY(player2Y);
-                    }
+			if(playerID == 1){
+				double player2X = dataIn.readDouble();
+                       		double player2Y = dataIn.readDouble();		
+			if(player2 != null){
+                      		 player2.setX(player2X);
+                       		 player2.setY(player2Y);
+                        }	
+			}else if (playerID == 2){
+                                double player1X = dataIn.readDouble();
+                       		double player1Y = dataIn.readDouble();		
+			if(player1 != null){
+                      		 player1.setX(player1X);
+                       		 player1.setY(player1Y);
+		  	}
                 }
 
             } catch(IOException ex){
