@@ -87,6 +87,5 @@ public class Shark extends Enemy {
 				return;
 			}
 		newState(Constants.EnemyConstants.IDLE);
-		playing.addDialogue((int) hitbox.x, (int) hitbox.y, Constants.Dialogue.EXCLAMATION);
 	}
 }

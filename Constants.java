@@ -1,6 +1,6 @@
 /**
 The Constants class contains public static final variables that store values that will not change throughout the program. 
-The class also has nested classes that store constant values related to dialogues, projectiles, game objects, enemies, etc. 
+The class also has nested classes that store constant values related to projectiles, game objects, enemies, etc. 
 
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
@@ -21,23 +21,6 @@ public class Constants {
 
 	public static final float GRAVITY = 0.04f * Game.SCALE;
 	public static final int ANI_SPEED = 25;
-
-	public static class Dialogue {
-		public static final int QUESTION = 0;
-		public static final int EXCLAMATION = 1;
-
-		public static final int DIALOGUE_WIDTH = (int) (14 * Game.SCALE);
-		public static final int DIALOGUE_HEIGHT = (int) (12 * Game.SCALE);
-
-		public static int GetSpriteAmount(int type) {
-			switch (type) {
-			case QUESTION, EXCLAMATION:
-				return 5;
-			}
-
-			return 0;
-		}
-	}
 
 	public static class Projectiles {
 		public static final int CANNON_BALL_DEFAULT_WIDTH = 15;

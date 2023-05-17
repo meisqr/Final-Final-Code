@@ -1,7 +1,7 @@
 /**
 Playing class extends the class "State" and implements the interface "Statemethods". It contains various fields, 
-such as Player, LevelManager, EnemyManager, ObjectManager, and different overlays. Its methods include loading levels, 
-updating the game state, and drawing dialogue.
+such as Player, LevelManager, EnemyManager, ObjectManager, and different overlays. Its methods include loading levels and 
+updating the game state.
 
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
@@ -52,7 +52,6 @@ public class Playing extends State implements Statemethods {
 	public BufferedImage bigCloud;
 	public BufferedImage smallCloud;
 	private BufferedImage[] questionImgs, exclamationImgs;
-	private ArrayList<DialogueEffect> dialogEffects = new ArrayList<>();
 
 	private int[] smallCloudsPos;
 	private Random rnd = new Random();
@@ -80,38 +79,8 @@ public class Playing extends State implements Statemethods {
 		for (int i = 0; i < smallCloudsPos.length; i++)
 			smallCloudsPos[i] = (int) (90 * Game.SCALE) + rnd.nextInt((int) (100 * Game.SCALE));
 
-		loadDialogue();
 		calcLvlOffset();
 		loadStartLevel();
-	}
-
-	private void loadDialogue() {
-		loadDialogueImgs();
-
-		// Load dialogue array with premade objects, that gets activated when needed.
-		// This is a simple
-		// way of avoiding ConcurrentModificationException error. (Adding to a list that
-		// is being looped through.
-
-		for (int i = 0; i < 10; i++)
-			dialogEffects.add(new DialogueEffect(0, 0, Constants.Dialogue.EXCLAMATION));
-		for (int i = 0; i < 10; i++)
-			dialogEffects.add(new DialogueEffect(0, 0, Constants.Dialogue.QUESTION));
-
-		for (DialogueEffect de : dialogEffects)
-			de.deactive();
-	}
-
-	private void loadDialogueImgs() {
-		BufferedImage qtemp = LoadSave.GetSpriteAtlas(LoadSave.QUESTION_ATLAS);
-		questionImgs = new BufferedImage[5];
-		for (int i = 0; i < questionImgs.length; i++)
-			questionImgs[i] = qtemp.getSubimage(i * 14, 0, 14, 12);
-
-		BufferedImage etemp = LoadSave.GetSpriteAtlas(LoadSave.EXCLAMATION_ATLAS);
-		exclamationImgs = new BufferedImage[5];
-		for (int i = 0; i < exclamationImgs.length; i++)
-			exclamationImgs[i] = etemp.getSubimage(i * 14, 0, 14, 12);
 	}
 
 	public void loadNextLevel() {
@@ -161,7 +130,6 @@ public class Playing extends State implements Statemethods {
 		else if (playerDying)
 			player.update();
 		else {
-			updateDialogue();
 			levelManager.update();
 			objectManager.update(levelManager.getCurrentLevel().getLevelData(), player);
 			player.update();
@@ -171,32 +139,6 @@ public class Playing extends State implements Statemethods {
 		}
 	}
 
-	private void updateDialogue() {
-		for (DialogueEffect de : dialogEffects)
-			if (de.isActive())
-				de.update();
-	}
-
-	/*void drawDialogue(Graphics g, int xLvlOffset) {
-		for (DialogueEffect de : dialogEffects)
-			if (de.isActive()) {
-				if (de.getType() == Constants.Dialogue.QUESTION)
-					g.drawImage(questionImgs[de.getAniIndex()], de.getX() - xLvlOffset, de.getY(), Constants.Dialogue.DIALOGUE_WIDTH, Constants.Dialogue.DIALOGUE_HEIGHT, null);
-				else
-					g.drawImage(exclamationImgs[de.getAniIndex()], de.getX() - xLvlOffset, de.getY(), Constants.Dialogue.DIALOGUE_WIDTH, Constants.Dialogue.DIALOGUE_HEIGHT, null);
-			}
-	}*/
-
-	public void addDialogue(int x, int y, int type) {
-		// Not adding a new one, we are recycling. #ThinkGreen lol
-		dialogEffects.add(new DialogueEffect(x, y - (int) (Game.SCALE * 15), type));
-		for (DialogueEffect de : dialogEffects)
-			if (!de.isActive())
-				if (de.getType() == type) {
-					de.reset(x, -(int) (Game.SCALE * 15));
-					return;
-				}
-	}
 
 	private void checkCloseToBorder() {
 		int playerX = (int) player.getHitbox().x;
@@ -246,7 +188,7 @@ public class Playing extends State implements Statemethods {
 		player.resetAll();
 		enemyManager.resetAllEnemies();
 		objectManager.resetAllObjects();
-		dialogEffects.clear();
+		
 	}
 
 	public void setGameOver(boolean gameOver) {

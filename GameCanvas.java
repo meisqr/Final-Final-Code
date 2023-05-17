@@ -1,7 +1,7 @@
 /**
 GameCanvas class extends JComponent and is responsible for painting the game graphics. 
 It also creates instances of the Player, Playing, and Game classes and uses their methods to draw the game's background, 
-levels, objects, enemies, players, and dialogue. The GameCanvas also updates the game and player positions.
+levels, objects, enemies, and players. The GameCanvas also updates the game and player positions.
 
 @author Jervie S. Manabat (223961), Giuliana Patricia Gabriele L. Bautista (220811)
 @version May 15,2023
@@ -55,7 +55,6 @@ public class GameCanvas extends JComponent{
         player1.render(g2d, game.getPlaying().xLvlOffset);
 
         game.getPlaying().objectManager.drawBackgroundTrees(g, game.getPlaying().xLvlOffset);
-        //game.getPlaying().drawDialogue(g, game.getPlaying().xLvlOffset);
 
         game.render(g2d);
         game.getPlaying().update();

@@ -135,7 +135,6 @@ public class Pinkstar extends Enemy {
 
 	private void rollOver(Playing playing) {
 		newState(Constants.EnemyConstants.IDLE);
-		playing.addDialogue((int) hitbox.x, (int) hitbox.y, Constants.Dialogue.QUESTION);
 	}
 
 }

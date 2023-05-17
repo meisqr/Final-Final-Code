@@ -53,11 +53,7 @@ public class Crabby extends Enemy {
 						newState(Constants.EnemyConstants.ATTACK);
 				}
 				move(lvlData);
-
-				if (inAir)
-					playing.addDialogue((int) hitbox.x, (int) hitbox.y, Constants.Dialogue.EXCLAMATION);
-
-				break;
+				
 			case Constants.EnemyConstants.ATTACK:
 				if (aniIndex == 0)
 					attackChecked = false;
