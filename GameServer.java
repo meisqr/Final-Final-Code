@@ -34,7 +34,8 @@ public class GameServer {
     private WriteToClient p1WriteRunnable;
     private WriteToClient p2WriteRunnable;
 
-    private float p1x, p1y, p2x, p2y, cx, cy;
+    private float p1x, p1y, p2x, p2y;
+    private boolean isTheGameRunning;
 
 
     public GameServer(){
@@ -110,10 +111,12 @@ public class GameServer {
                     if(playerID == 1){
                         p1x = dataIn.readFloat();
                         p1y = dataIn.readFloat();
+                        isTheGameRunning = dataIn.readBoolean();
                         
                     } else if (playerID == 2) {
                         p2x = dataIn.readFloat();
                         p2y = dataIn.readFloat();
+                        isTheGameRunning = dataIn.readBoolean();
                         //cx = dataIn.readFloat();
                         //cy = dataIn.readFloat();
                     }
@@ -141,11 +144,13 @@ public class GameServer {
                     if(playerID == 1){
                         dataOut.writeFloat(p2x);
                         dataOut.writeFloat(p2y);
+                        dataOut.writeBoolean(isTheGameRunning);
                         //crab
                         dataOut.flush();
                     } else if (playerID == 2) {
                         dataOut.writeFloat(p1x);
                         dataOut.writeFloat(p1y);
+                        dataOut.writeBoolean(isTheGameRunning);
                         //dataOut.writeFloat(cx);
                         //dataOut.writeFloat(cy);
                         //crab

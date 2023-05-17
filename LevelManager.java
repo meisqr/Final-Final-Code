@@ -35,6 +35,7 @@ public class LevelManager {
 		createWater();
 		levels = new ArrayList<>();
 		buildAllLevels();
+		
 	}
 
 	private void createWater() {

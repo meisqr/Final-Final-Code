@@ -27,7 +27,7 @@ import java.awt.image.BufferedImage;
 public class GameCompletedOverlay {
 	private Playing playing;
 	private BufferedImage img;
-	private MenuButton quit, credit;
+	private MenuButton quit;
 	private int imgX, imgY, imgW, imgH;
 
 	public GameCompletedOverlay(Playing playing) {
@@ -55,12 +55,10 @@ public class GameCompletedOverlay {
 
 		g.drawImage(img, imgX, imgY, imgW, imgH, null);
 
-		credit.draw(g);
 		quit.draw(g);
 	}
 
 	public void update() {
-		credit.update();
 		quit.update();
 	}
 
@@ -69,13 +67,10 @@ public class GameCompletedOverlay {
 	}
 
 	public void mouseMoved(MouseEvent e) {
-		credit.setMouseOver(false);
 		quit.setMouseOver(false);
 
 		if (isIn(quit, e))
 			quit.setMouseOver(true);
-		else if (isIn(credit, e))
-			credit.setMouseOver(true);
 	}
 
 	public void mouseReleased(MouseEvent e) {
@@ -83,22 +78,15 @@ public class GameCompletedOverlay {
 			if (quit.isMousePressed()) {
 				playing.resetAll();
 				playing.resetGameCompleted();
-
+				System.exit(0);
 			}
-		} else if (isIn(credit, e))
-			if (credit.isMousePressed()) {
-				playing.resetAll();
-				playing.resetGameCompleted();
-			}
+		}
 
 		quit.resetBools();
-		credit.resetBools();
 	}
 
 	public void mousePressed(MouseEvent e) {
 		if (isIn(quit, e))
 			quit.setMousePressed(true);
-		else if (isIn(credit, e))
-			credit.setMousePressed(true);
 	}
 }

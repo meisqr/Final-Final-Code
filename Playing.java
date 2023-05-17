@@ -64,14 +64,6 @@ public class Playing extends State implements Statemethods {
 
 	private int playerNum;
 
-	
-	// If you would like to have it on more levels, add a value for objects when
-	// creating the level from lvlImgs. Just like any other object.
-
-	// Then play around with position values so it looks correct depending on where
-	// you want
-	// it.
-
 	public Playing(Game game, int num) {
 		super(game);
 		playerNum = num;
@@ -185,7 +177,7 @@ public class Playing extends State implements Statemethods {
 				de.update();
 	}
 
-	void drawDialogue(Graphics g, int xLvlOffset) {
+	/*void drawDialogue(Graphics g, int xLvlOffset) {
 		for (DialogueEffect de : dialogEffects)
 			if (de.isActive()) {
 				if (de.getType() == Constants.Dialogue.QUESTION)
@@ -193,7 +185,7 @@ public class Playing extends State implements Statemethods {
 				else
 					g.drawImage(exclamationImgs[de.getAniIndex()], de.getX() - xLvlOffset, de.getY(), Constants.Dialogue.DIALOGUE_WIDTH, Constants.Dialogue.DIALOGUE_HEIGHT, null);
 			}
-	}
+	}*/
 
 	public void addDialogue(int x, int y, int type) {
 		// Not adding a new one, we are recycling. #ThinkGreen lol
@@ -403,6 +395,14 @@ public class Playing extends State implements Statemethods {
 
 	public void setPlayerDying(boolean playerDying) {
 		this.playerDying = playerDying;
+	}
+
+	public void stopTheGame(boolean willTheGameStop){
+		gameCompleted = willTheGameStop;
+	}
+
+	public boolean isTheGameRunning(){
+		return gameCompleted;
 	}
 
 	

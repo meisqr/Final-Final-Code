@@ -55,7 +55,7 @@ public class GameCanvas extends JComponent{
         player1.render(g2d, game.getPlaying().xLvlOffset);
 
         game.getPlaying().objectManager.drawBackgroundTrees(g, game.getPlaying().xLvlOffset);
-        game.getPlaying().drawDialogue(g, game.getPlaying().xLvlOffset);
+        //game.getPlaying().drawDialogue(g, game.getPlaying().xLvlOffset);
 
         game.render(g2d);
         game.getPlaying().update();

@@ -55,19 +55,34 @@ public class Game {
 
 	public void update() {
 		switch (Gamestate.state) {
-		case MENU -> menu.update();
-		case PLAYING -> playing1.update();
-		case OPTIONS -> gameOptions.update();
-		case QUIT -> System.exit(0);
+			case MENU:
+				menu.update();
+				break;
+			case PLAYING:
+				playing1.update();
+				playing2.update();
+				break;
+			case OPTIONS:
+				gameOptions.update();
+				break;
+			case QUIT:
+				System.exit(0);
 		}
 	}
 
 	@SuppressWarnings("incomplete-switch")
 	public void render(Graphics g) {
 		switch (Gamestate.state) {
-		case MENU -> menu.draw(g);
-		case PLAYING -> playing1.draw(g);
-		case OPTIONS -> gameOptions.draw(g);
+			case MENU:
+				menu.draw(g);
+				break;
+			case PLAYING:
+				playing1.draw(g);
+				playing2.draw(g);
+				break;
+			case OPTIONS:
+				gameOptions.draw(g);
+				break;
 		}
 	}
 

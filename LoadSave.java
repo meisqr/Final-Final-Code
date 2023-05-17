@@ -86,7 +86,7 @@ public class LoadSave {
 
 	public static BufferedImage[] GetAllLevels() {
 		levelFiles = new ArrayList<String>();
-		for(int i = 1; i <= 5; i++){
+		for(int i = 1; i <= 1; i++){
 			levelFiles.add("" + i + ".png");
 		}
 		

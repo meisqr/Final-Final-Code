@@ -82,7 +82,6 @@ public class EnemyManager {
 			if (p.isActive()) {
 				g.drawImage(pinkstarArr[p.getState()][p.getAniIndex()], (int) p.getHitbox().x - xLvlOffset - Constants.EnemyConstants.PINKSTAR_DRAWOFFSET_X + p.flipX(),
 						(int) p.getHitbox().y - Constants.EnemyConstants.PINKSTAR_DRAWOFFSET_Y + (int) p.getPushDrawOffset(), Constants.EnemyConstants.PINKSTAR_WIDTH * p.flipW(), Constants.EnemyConstants.PINKSTAR_HEIGHT, null);
-//				p.drawHitbox(g, xLvlOffset);
 			}
 	}
 
@@ -92,9 +91,6 @@ public class EnemyManager {
 
 				g.drawImage(crabbyArr[c.getState()][c.getAniIndex()], (int) c.getHitbox().x - xLvlOffset - Constants.EnemyConstants.CRABBY_DRAWOFFSET_X + c.flipX(),
 						(int) c.getHitbox().y - Constants.EnemyConstants.CRABBY_DRAWOFFSET_Y + (int) c.getPushDrawOffset(), Constants.EnemyConstants.CRABBY_WIDTH * c.flipW(), Constants.EnemyConstants.CRABBY_HEIGHT, null);
-
-//				c.drawHitbox(g, xLvlOffset);
-//				c.drawAttackBox(g, xLvlOffset);
 			}
 
 	}

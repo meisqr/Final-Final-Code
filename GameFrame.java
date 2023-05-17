@@ -43,8 +43,8 @@ public class GameFrame extends JFrame implements Runnable {
     private int width, height;
     private Container contentPane;
     private Player player1, player2;
-    private Enemy crabby;
-    //private DrawingComponent dc;
+    private Crabby crabby;
+    private EnemyManager enemyManager;
     private Timer animationTimer;
     private Boolean up, down, left, right;
     private Socket socket;
@@ -57,6 +57,8 @@ public class GameFrame extends JFrame implements Runnable {
     private Playing playing;
     private GameCanvas gameCanvas;
     private float crabbyX, crabbyY;
+    private Playing isTheGameRunning;
+
 
 
     public GameFrame(int w, int h){
@@ -67,6 +69,7 @@ public class GameFrame extends JFrame implements Runnable {
         left = false;
         right = false;
         gameCanvas = new GameCanvas(w, h);
+        enemyManager = new EnemyManager(gameCanvas.getGame().getPlaying());
     }
 
     public void setUpGUI(){
@@ -96,10 +99,12 @@ public class GameFrame extends JFrame implements Runnable {
         if(playerID == 1) {
             player1 = gameCanvas.getPlayer1();
             player2 = gameCanvas.getPlayer2();
+            isTheGameRunning = gameCanvas.getGame().getPlaying();
             crabby = new Crabby(crabbyX, crabbyY);
         } else{
             player2 = gameCanvas.getPlayer1();
             player1 = gameCanvas.getPlayer2();
+            isTheGameRunning = gameCanvas.getGame().getPlaying();
         }
     }
 
@@ -210,7 +215,6 @@ public class GameFrame extends JFrame implements Runnable {
 		case MENU -> gameCanvas.getGame().getMenu().update();
 		case PLAYING -> gameCanvas.getGame().getPlaying().update();
 		case OPTIONS -> gameCanvas.getGame().getGameOptions().update();
-//		case CREDITS -> credits.update();
 		case QUIT -> System.exit(0);
 		}
 	}
@@ -220,7 +224,6 @@ public class GameFrame extends JFrame implements Runnable {
 		case MENU -> gameCanvas.getGame().getMenu().draw(g);
 		case PLAYING -> gameCanvas.getGame().getPlaying().draw(g);
 		case OPTIONS -> gameCanvas.getGame().getGameOptions().draw(g);
-//		case CREDITS -> credits.draw(g);
 		}
 	}
 	@Override
@@ -310,17 +313,21 @@ public class GameFrame extends JFrame implements Runnable {
                         //crab
 						float player2X = dataIn.readFloat();
 						float player2Y = dataIn.readFloat();
+                        boolean isTheGameRunningBool = dataIn.readBoolean();
 						if (player2 != null) {
 							player2.setX(player2X);
 							player2.setY(player2Y);
+                            isTheGameRunning.stopTheGame(isTheGameRunningBool);
 						}
                     }else if (playerID == 2){
                         //crab
 						float player1X = dataIn.readFloat();
 						float player1Y = dataIn.readFloat();
+                        boolean isTheGameRunningBool = dataIn.readBoolean();
 						if(player1 != null){
 							player1.setX(player1X);
 							player1.setY(player1Y);
+                            isTheGameRunning.stopTheGame(isTheGameRunningBool);
                             //crabby.setX(crabbyX);
                             //crabby.setY(crabbyY);
 		  	           }
@@ -362,6 +369,7 @@ public class GameFrame extends JFrame implements Runnable {
                         if(playerID == 1){
                             dataOut.writeFloat(player1.getX());
                             dataOut.writeFloat(player1.getY());
+                            dataOut.writeBoolean(isTheGameRunning.isTheGameRunning());
                             //dataOut.writeFloat(crabby.getX());
                             //dataOut.writeFloat(crabby.getY());
                             dataOut.flush();
@@ -369,6 +377,7 @@ public class GameFrame extends JFrame implements Runnable {
                         else if(player2 != null && playerID == 2){
                             dataOut.writeFloat(player2.getX());
                             dataOut.writeFloat(player2.getY());
+                            dataOut.writeBoolean(isTheGameRunning.isTheGameRunning());
                             dataOut.flush();
                         }
                     }
