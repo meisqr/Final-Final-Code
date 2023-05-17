@@ -310,7 +310,6 @@ public class GameFrame extends JFrame implements Runnable {
                 while(true){
                     
 			        if(playerID == 1) {
-                        //crab
 						float player2X = dataIn.readFloat();
 						float player2Y = dataIn.readFloat();
                         boolean isTheGameRunningBool = dataIn.readBoolean();
@@ -318,9 +317,10 @@ public class GameFrame extends JFrame implements Runnable {
 							player2.setX(player2X);
 							player2.setY(player2Y);
                             isTheGameRunning.stopTheGame(isTheGameRunningBool);
+                            if (isTheGameRunningBool == true)
+                                System.exit(0); // reflects on player1 if player2 finishes first
 						}
                     }else if (playerID == 2){
-                        //crab
 						float player1X = dataIn.readFloat();
 						float player1Y = dataIn.readFloat();
                         boolean isTheGameRunningBool = dataIn.readBoolean();
@@ -328,8 +328,6 @@ public class GameFrame extends JFrame implements Runnable {
 							player1.setX(player1X);
 							player1.setY(player1Y);
                             isTheGameRunning.stopTheGame(isTheGameRunningBool);
-                            //crabby.setX(crabbyX);
-                            //crabby.setY(crabbyY);
 		  	           }
                     }
 				}
@@ -370,8 +368,6 @@ public class GameFrame extends JFrame implements Runnable {
                             dataOut.writeFloat(player1.getX());
                             dataOut.writeFloat(player1.getY());
                             dataOut.writeBoolean(isTheGameRunning.isTheGameRunning());
-                            //dataOut.writeFloat(crabby.getX());
-                            //dataOut.writeFloat(crabby.getY());
                             dataOut.flush();
                         }
                         else if(player2 != null && playerID == 2){

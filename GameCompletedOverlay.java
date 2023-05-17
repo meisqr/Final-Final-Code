@@ -89,4 +89,12 @@ public class GameCompletedOverlay {
 		if (isIn(quit, e))
 			quit.setMousePressed(true);
 	}
+
+	public void gameWinner(){
+		playing.isTheGameRunning();
+	}
+
+	public void gameLoser(){
+
+	}
 }
