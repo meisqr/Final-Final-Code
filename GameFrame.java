@@ -69,6 +69,7 @@ public class GameFrame extends JFrame implements Runnable {
         contentPane.setFocusable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
+	this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
