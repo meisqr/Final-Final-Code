@@ -34,6 +34,7 @@ public class GameCompletedOverlay {
 	public GameCompletedOverlay(Playing playing) {
 		this.playing = playing;
 		resultImage = LoadSave.GAME_COMPLETED;
+		
 		createImg();
 		createButtons();
 	}
@@ -95,8 +96,8 @@ public class GameCompletedOverlay {
 
 	public void determineWinner(boolean result){
 		if (result == true)
-			resultImage = LoadSave.GAME_COMPLETED;
-		//else
-			//resultImage = LoadSave.GAME_COMPLETED2;
+			resultImage.replace(LoadSave.GAME_COMPLETED, LoadSave.GAME_COMPLETED);
+		else
+			resultImage.replace(LoadSave.GAME_COMPLETED, LoadSave.GAME_COMPLETED2);
 	}
 }

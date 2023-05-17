@@ -54,7 +54,7 @@ public class LoadSave {
 	public static final String TREE_ONE_ATLAS = "tree_one_atlas.png";
 	public static final String TREE_TWO_ATLAS = "tree_two_atlas.png";
 	public static final String GAME_COMPLETED = "game_completed.png";
-	//public static final String GAME_COMPLETED2 = "game_completed2.png";
+	public static final String GAME_COMPLETED2 = "game_completed2.png";
 	public static final String WATER_TOP = "water_atlas_animation.png";
 	public static final String WATER_BOTTOM = "water.png";
 	

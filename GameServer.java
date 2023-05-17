@@ -117,8 +117,6 @@ public class GameServer {
                         p2x = dataIn.readFloat();
                         p2y = dataIn.readFloat();
                         isTheGameRunning = dataIn.readBoolean();
-                        //cx = dataIn.readFloat();
-                        //cy = dataIn.readFloat();
                     }
                 }
             } catch (IOException ex){
@@ -145,15 +143,11 @@ public class GameServer {
                         dataOut.writeFloat(p2x);
                         dataOut.writeFloat(p2y);
                         dataOut.writeBoolean(isTheGameRunning);
-                        //crab
                         dataOut.flush();
                     } else if (playerID == 2) {
                         dataOut.writeFloat(p1x);
                         dataOut.writeFloat(p1y);
                         dataOut.writeBoolean(isTheGameRunning);
-                        //dataOut.writeFloat(cx);
-                        //dataOut.writeFloat(cy);
-                        //crab
                         dataOut.flush();
                     }
                     try{
