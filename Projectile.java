@@ -39,11 +39,6 @@ public class Projectile {
 		hitbox.x += dir * Constants.Projectiles.SPEED;
 	}
 
-	public void setPos(int x, int y) {
-		hitbox.x = x;
-		hitbox.y = y;
-	}
-
 	public Rectangle2D.Float getHitbox() {
 		return hitbox;
 	}

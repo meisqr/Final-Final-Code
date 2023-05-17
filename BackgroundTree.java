@@ -51,10 +51,6 @@ public class BackgroundTree {
 		return aniIndex;
 	}
 
-	public void setAniIndex(int aniIndex) {
-		this.aniIndex = aniIndex;
-	}
-
 	public int getX() {
 		return x;
 	}
@@ -75,7 +71,4 @@ public class BackgroundTree {
 		return type;
 	}
 
-	public void setType(int type) {
-		this.type = type;
-	}
 }

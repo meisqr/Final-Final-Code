@@ -43,20 +43,11 @@ public class GameFrame extends JFrame implements Runnable {
     private int width, height;
     private Container contentPane;
     private Player player1, player2;
-    private Crabby crabby;
-    private EnemyManager enemyManager;
-    private Timer animationTimer;
-    private Boolean up, down, left, right;
     private Socket socket;
     public static int playerID;
-    public static int playerNum;
     private ReadFromServer rfsRunnable;
     private WriteToServer wtsRunnable;
-    private String ipAddress;
-    private Game newGame;
-    private Playing playing;
     private GameCanvas gameCanvas;
-    private float crabbyX, crabbyY;
     private Playing isTheGameRunning;
 
 
@@ -64,12 +55,7 @@ public class GameFrame extends JFrame implements Runnable {
     public GameFrame(int w, int h){
         width = w;
         height = h;
-        up = false;
-        down = false;
-        left = false;
-        right = false;
         gameCanvas = new GameCanvas(w, h);
-        enemyManager = new EnemyManager(gameCanvas.getGame().getPlaying());
     }
 
     public void setUpGUI(){
@@ -77,17 +63,13 @@ public class GameFrame extends JFrame implements Runnable {
         this.setTitle("Player #" + playerID);
         contentPane.setPreferredSize(new Dimension(width, height));
         createSprites();
-        //dc = new DrawingComponent();
-        //contentPane.add(dc);
         contentPane.add(gameCanvas);
         contentPane.setFocusable(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
-  
-        //setUpAnimationTimer();
-        
+
         startGameLoop();  
         setUpKeyListener();
         setUpMouseListener();

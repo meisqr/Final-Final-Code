@@ -66,10 +66,6 @@ public class UrmButton{
 		mousePressed = false;
 	}
 
-	public boolean isMouseOver() {
-		return mouseOver;
-	}
-
 	public void setMouseOver(boolean mouseOver) {
 		this.mouseOver = mouseOver;
 	}
@@ -88,10 +84,6 @@ public class UrmButton{
 
 	public Rectangle getBounds(){
 		return bounds;
-	}
-
-	public void setBounds(Rectangle bounds){
-		this.bounds = bounds;
 	}
 
 	public void applyGamestate() {

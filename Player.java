@@ -229,8 +229,6 @@ public class Player extends Entity {
 
 	public void render(Graphics g, int lvlOffset) {
 		g.drawImage(animations[state][aniIndex], (int) (hitbox.x - xDrawOffset) - lvlOffset + flipX, (int) (hitbox.y - yDrawOffset + (int) (pushDrawOffset)), width * flipW, height, null);
-//		drawHitbox(g, lvlOffset);
-//		drawAttackBox(g, lvlOffset);
 		drawUI(g);
 	}
 
@@ -460,16 +458,8 @@ public class Player extends Entity {
 		this.attacking = attacking;
 	}
 
-	public boolean isLeft() {
-		return left;
-	}
-
 	public void setLeft(boolean left) {
 		this.left = left;
-	}
-
-	public boolean isRight() {
-		return right;
 	}
 
 	public void setRight(boolean right) {

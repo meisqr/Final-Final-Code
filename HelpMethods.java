@@ -147,11 +147,9 @@ public class HelpMethods {
 	}
 
 	// Player can sometimes be on an edge and in sight of enemy.
-	// The old method would return false because the player x is not on edge.
 	// This method checks both player x and player x + width.
 	// If tile under playerBox.x is not solid, we switch to playerBox.x +
-	// playerBox.width;
-	// One of them will be true, because of prior checks.
+	// playerBox.width; One of them will be true, because of prior checks.
 
 	public static boolean IsSightClear(int[][] lvlData, Rectangle2D.Float enemyBox, Rectangle2D.Float playerBox, int yTile) {
 		int firstXTile = (int) (enemyBox.x / Game.TILES_SIZE);
@@ -161,16 +159,6 @@ public class HelpMethods {
 			secondXTile = (int) (playerBox.x / Game.TILES_SIZE);
 		else
 			secondXTile = (int) ((playerBox.x + playerBox.width) / Game.TILES_SIZE);
-
-		if (firstXTile > secondXTile)
-			return IsAllTilesWalkable(secondXTile, firstXTile, yTile, lvlData);
-		else
-			return IsAllTilesWalkable(firstXTile, secondXTile, yTile, lvlData);
-	}
-
-	public static boolean IsSightClear_OLD(int[][] lvlData, Rectangle2D.Float firstHitbox, Rectangle2D.Float secondHitbox, int yTile) {
-		int firstXTile = (int) (firstHitbox.x / Game.TILES_SIZE);
-		int secondXTile = (int) (secondHitbox.x / Game.TILES_SIZE);
 
 		if (firstXTile > secondXTile)
 			return IsAllTilesWalkable(secondXTile, firstXTile, yTile, lvlData);

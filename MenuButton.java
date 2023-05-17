@@ -61,10 +61,6 @@ public class MenuButton {
 			index = 2;
 	}
 
-	public boolean isMouseOver() {
-		return mouseOver;
-	}
-
 	public void setMouseOver(boolean mouseOver) {
 		this.mouseOver = mouseOver;
 	}

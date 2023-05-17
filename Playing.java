@@ -31,9 +31,6 @@ public class Playing extends State implements Statemethods {
 
 	private Player player;
 	private Player player1, player2;
-	// try and fix and make two instances(?) of players to make it 
-	// multiplayer before networking to get and pass the cooordinates
-	// etc etc <3
 	LevelManager levelManager;
 	EnemyManager enemyManager;
 	ObjectManager objectManager;
@@ -51,7 +48,6 @@ public class Playing extends State implements Statemethods {
 	public BufferedImage backgroundImg;
 	public BufferedImage bigCloud;
 	public BufferedImage smallCloud;
-	private BufferedImage[] questionImgs, exclamationImgs;
 
 	private int[] smallCloudsPos;
 	private Random rnd = new Random();
@@ -170,10 +166,6 @@ public class Playing extends State implements Statemethods {
 			g.drawImage(smallCloud, Constants.Environment.SMALL_CLOUD_WIDTH * 4 * i - (int) (xLvlOffset * 0.7), smallCloudsPos[i], Constants.Environment.SMALL_CLOUD_WIDTH, Constants.Environment.SMALL_CLOUD_HEIGHT, null);
 	}
 
-	public void setGameCompleted() {
-		gameCompleted = true;
-	}
-
 	public void resetGameCompleted() {
 		gameCompleted = false;
 	}
@@ -254,9 +246,7 @@ public class Playing extends State implements Statemethods {
 	}
 
 	public void mouseDragged(MouseEvent e) {
-		//if (!gameOver && !gameCompleted && !lvlCompleted)
-			//if (paused)
-				//pauseOverlay.mouseDragged(e);
+		// not in use
 	}
 
 	@Override
@@ -304,10 +294,6 @@ public class Playing extends State implements Statemethods {
 
 	public void setMaxLvlOffset(int lvlOffset) {
 		this.maxLvlOffsetX = lvlOffset;
-	}
-
-	public void unpauseGame() {
-		paused = false;
 	}
 
 	public Player getPlayer() {

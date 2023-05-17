@@ -72,8 +72,6 @@ public class EnemyManager {
 			if (s.isActive()) {
 				g.drawImage(sharkArr[s.getState()][s.getAniIndex()], (int) s.getHitbox().x - xLvlOffset - Constants.EnemyConstants.SHARK_DRAWOFFSET_X + s.flipX(),
 						(int) s.getHitbox().y - Constants.EnemyConstants.SHARK_DRAWOFFSET_Y + (int) s.getPushDrawOffset(), Constants.EnemyConstants.SHARK_WIDTH * s.flipW(), Constants.EnemyConstants.SHARK_HEIGHT, null);
-//				s.drawHitbox(g, xLvlOffset);
-//				s.drawAttackBox(g, xLvlOffset);
 			}
 	}
 
