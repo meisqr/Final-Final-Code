@@ -30,6 +30,7 @@ import java.util.ArrayList;
 public class Playing extends State implements Statemethods {
 
 	private Player player;
+	private Player player1, player2;
 	// try and fix and make two instances(?) of players to make it 
 	// multiplayer before networking to get and pass the cooordinates
 	// etc etc <3
@@ -73,8 +74,12 @@ public class Playing extends State implements Statemethods {
 
 	public Playing(Game game, int num) {
 		super(game);
-		initClasses();
 		playerNum = num;
+		
+		player1 = new Player(150, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1);
+		player2 = new Player(160, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 2);
+
+		initClasses();
 
 		backgroundImg = LoadSave.GetSpriteAtlas(LoadSave.PLAYING_BG_IMG);
 		bigCloud = LoadSave.GetSpriteAtlas(LoadSave.BIG_CLOUDS);
@@ -139,8 +144,10 @@ public class Playing extends State implements Statemethods {
 		enemyManager = new EnemyManager(this);
 		objectManager = new ObjectManager(this);
 
-		player = new Player(150, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 1);
-		player = new Player(160, 200, (int) (64 * Game.SCALE), (int) (40 * Game.SCALE), this, 2);
+		if (playerNum == 1)
+			player = player1;
+		else if (playerNum == 2)
+			player = player2;
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 
@@ -368,14 +375,17 @@ public class Playing extends State implements Statemethods {
 		paused = false;
 	}
 
-	public void windowFocusLost() {
-		player.resetDirBooleans();
-	}
-
 	public Player getPlayer() {
 		return player;
 	}
 
+	public Player getPlayer1(){
+		return player1;
+	}
+
+	public Player getPlayer2(){
+		return player2;
+	}
 	
 
 	public EnemyManager getEnemyManager() {

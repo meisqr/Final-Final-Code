@@ -82,12 +82,11 @@ public class Crabby extends Enemy {
 	}
 
 	public void setX(float newValue){
-		hitbox.x = newValue;
-		System.out.println(hitbox.x);
+		super.attackBox.x =  newValue;
 	}
 
 	public void setY(float newValue){
-		hitbox.y = newValue;
+		super.attackBox.y = newValue;
 	}
 
 }

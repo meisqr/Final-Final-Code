@@ -96,7 +96,7 @@ public class GameFrame extends JFrame implements Runnable {
         if(playerID == 1) {
             player1 = gameCanvas.getPlayer1();
             player2 = gameCanvas.getPlayer2();
-            crabby = new Crabby(EXIT_ON_CLOSE, playerID);
+            crabby = new Crabby(crabbyX, crabbyY);
         } else{
             player2 = gameCanvas.getPlayer1();
             player1 = gameCanvas.getPlayer2();
@@ -274,11 +274,6 @@ public class GameFrame extends JFrame implements Runnable {
 		}
 	}
 
-    public void windowFocusLost() {
-		if (Gamestate.state == Gamestate.PLAYING)
-			playing.getPlayer().resetDirBooleans();
-	}
-
     public void connectToServer(String ipAddress){
         try{
             socket = new Socket(ipAddress, 55555);
@@ -326,6 +321,8 @@ public class GameFrame extends JFrame implements Runnable {
 						if(player1 != null){
 							player1.setX(player1X);
 							player1.setY(player1Y);
+                            //crabby.setX(crabbyX);
+                            //crabby.setY(crabbyY);
 		  	           }
                     }
 				}
@@ -365,6 +362,8 @@ public class GameFrame extends JFrame implements Runnable {
                         if(playerID == 1){
                             dataOut.writeFloat(player1.getX());
                             dataOut.writeFloat(player1.getY());
+                            //dataOut.writeFloat(crabby.getX());
+                            //dataOut.writeFloat(crabby.getY());
                             dataOut.flush();
                         }
                         else if(player2 != null && playerID == 2){

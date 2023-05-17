@@ -241,10 +241,10 @@ public abstract class Enemy extends Entity {
 	}
 
 	public void setX(float newValue){
-		hitbox.x = newValue;
+		attackBox.x = newValue;
 	}
 
 	public void setY(float newValue){
-		hitbox.y = newValue;
+		attackBox.y = newValue;
 	}
 }

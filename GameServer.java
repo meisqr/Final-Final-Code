@@ -114,6 +114,8 @@ public class GameServer {
                     } else if (playerID == 2) {
                         p2x = dataIn.readFloat();
                         p2y = dataIn.readFloat();
+                        //cx = dataIn.readFloat();
+                        //cy = dataIn.readFloat();
                     }
                 }
             } catch (IOException ex){
@@ -144,6 +146,8 @@ public class GameServer {
                     } else if (playerID == 2) {
                         dataOut.writeFloat(p1x);
                         dataOut.writeFloat(p1y);
+                        //dataOut.writeFloat(cx);
+                        //dataOut.writeFloat(cy);
                         //crab
                         dataOut.flush();
                     }

@@ -48,8 +48,8 @@ public class Game {
 
 	private void initClasses() {
 		menu = new Menu(this);
-		playing1 = new Playing(this,2);
-		playing2 = new Playing(this,1);
+		playing1 = new Playing(this,1);
+		playing2 = new Playing(this,2);
 		gameOptions = new GameOptions(this);
 	}
 
@@ -70,11 +70,6 @@ public class Game {
 		case OPTIONS -> gameOptions.draw(g);
 		}
 	}
-	
-	public void windowFocusLost() {
-		if (Gamestate.state == Gamestate.PLAYING)
-			playing1.getPlayer().resetDirBooleans();
-	}
 
 	public Menu getMenu() {
 		return menu;
@@ -82,10 +77,6 @@ public class Game {
 
 	public Playing getPlaying() {
 		return playing1;
-	}
-
-	public Playing getPlaying2(){
-		return playing2;
 	}
 
 	public GameOptions getGameOptions() {
