@@ -148,6 +148,7 @@ public class Playing extends State implements Statemethods {
 			player = player1;
 		else if (playerNum == 2)
 			player = player2;
+
 		player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 		player.setSpawn(levelManager.getCurrentLevel().getPlayerSpawn());
 
