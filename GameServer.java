@@ -107,17 +107,18 @@ public class GameServer {
         public void run(){
             try{
                 while(true){
-                    //dagdagcrab
                     if(playerID == 1){
                         p1x = dataIn.readFloat();
                         p1y = dataIn.readFloat();
                         isTheGameRunning = dataIn.readBoolean();
+                    
                         
                     } else if (playerID == 2) {
                         p2x = dataIn.readFloat();
                         p2y = dataIn.readFloat();
                         isTheGameRunning = dataIn.readBoolean();
                     }
+                    
                 }
             } catch (IOException ex){
                 System.out.println("IOException from RFC run()");

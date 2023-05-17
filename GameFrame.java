@@ -49,6 +49,7 @@ public class GameFrame extends JFrame implements Runnable {
     private WriteToServer wtsRunnable;
     private GameCanvas gameCanvas;
     private Playing isTheGameRunning;
+    private boolean isItPlaying;
 
 
 
@@ -56,6 +57,7 @@ public class GameFrame extends JFrame implements Runnable {
         width = w;
         height = h;
         gameCanvas = new GameCanvas(w, h);
+        isItPlaying = gameCanvas.getGame().getPlaying().isTheGameRunning();
     }
 
     public void setUpGUI(){
@@ -78,13 +80,14 @@ public class GameFrame extends JFrame implements Runnable {
     }
 
     private void createSprites(){
-        isTheGameRunning = gameCanvas.getGame().getPlaying();
         if(playerID == 1) {
             player1 = gameCanvas.getPlayer1();
             player2 = gameCanvas.getPlayer2();
+            isTheGameRunning = gameCanvas.getGame().getPlaying();
         } else{
             player2 = gameCanvas.getPlayer1();
             player1 = gameCanvas.getPlayer2();
+            isTheGameRunning = gameCanvas.getGame().getPlaying();
         }
     }
 
@@ -296,11 +299,11 @@ public class GameFrame extends JFrame implements Runnable {
 						if (player2 != null) {
 							player2.setX(player2X);
 							player2.setY(player2Y);
-                            isTheGameRunning.stopTheGame(isTheGameRunningBool);
-                            if (isTheGameRunningBool == true){
+                            if (isTheGameRunningBool != isItPlaying){
+                                isTheGameRunning.stopTheGame(true);
                                 isTheGameRunning.getCompletedOverlay();
-                                System.out.println("u lose");
                             }
+                            
 						}
                     }else if (playerID == 2){
 						float player1X = dataIn.readFloat();
@@ -309,8 +312,8 @@ public class GameFrame extends JFrame implements Runnable {
 						if(player1 != null){
 							player1.setX(player1X);
 							player1.setY(player1Y);
-                            isTheGameRunning.stopTheGame(isTheGameRunningBool);
-                            if (isTheGameRunningBool == true){
+                            if (isTheGameRunningBool != isItPlaying){
+                                isTheGameRunning.stopTheGame(true);
                                 isTheGameRunning.getCompletedOverlay();
                             }
 		  	           }
