@@ -29,9 +29,11 @@ public class GameCompletedOverlay {
 	private BufferedImage img;
 	private MenuButton quit;
 	private int imgX, imgY, imgW, imgH;
+	private String resultImage;
 
 	public GameCompletedOverlay(Playing playing) {
 		this.playing = playing;
+		resultImage = LoadSave.GAME_COMPLETED;
 		createImg();
 		createButtons();
 	}
@@ -41,7 +43,7 @@ public class GameCompletedOverlay {
 	}
 
 	private void createImg() {
-		img = LoadSave.GetSpriteAtlas(LoadSave.GAME_COMPLETED);
+		img = LoadSave.GetSpriteAtlas(resultImage);
 		imgW = (int) (img.getWidth() * Game.SCALE);
 		imgH = (int) (img.getHeight() * Game.SCALE);
 		imgX = Game.GAME_WIDTH / 2 - imgW / 2;
@@ -90,11 +92,11 @@ public class GameCompletedOverlay {
 			quit.setMousePressed(true);
 	}
 
-	public void gameWinner(){
-		playing.isTheGameRunning();
-	}
 
-	public void gameLoser(){
-
+	public void determineWinner(boolean result){
+		if (result == true)
+			resultImage = LoadSave.GAME_COMPLETED;
+		//else
+			//resultImage = LoadSave.GAME_COMPLETED2;
 	}
 }

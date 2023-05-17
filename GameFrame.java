@@ -96,15 +96,14 @@ public class GameFrame extends JFrame implements Runnable {
     }
 
     private void createSprites(){
+        isTheGameRunning = gameCanvas.getGame().getPlaying();
+        isTheGameRunning.resetGameCompleted(); // to make sure it is false at the start
         if(playerID == 1) {
             player1 = gameCanvas.getPlayer1();
             player2 = gameCanvas.getPlayer2();
-            isTheGameRunning = gameCanvas.getGame().getPlaying();
-            crabby = new Crabby(crabbyX, crabbyY);
         } else{
             player2 = gameCanvas.getPlayer1();
             player1 = gameCanvas.getPlayer2();
-            isTheGameRunning = gameCanvas.getGame().getPlaying();
         }
     }
 
@@ -317,8 +316,12 @@ public class GameFrame extends JFrame implements Runnable {
 							player2.setX(player2X);
 							player2.setY(player2Y);
                             isTheGameRunning.stopTheGame(isTheGameRunningBool);
-                            if (isTheGameRunningBool == true)
-                                System.exit(0); // reflects on player1 if player2 finishes first
+                            isTheGameRunning.getCompletedOverlay().determineWinner(isTheGameRunningBool);
+                            if (isTheGameRunningBool == true){
+                                isTheGameRunning.getCompletedOverlay().determineWinner(isTheGameRunningBool);
+                                 // get the losing thing
+                                //System.exit(0); // reflects on player1 if player2 finishes first
+                            }
 						}
                     }else if (playerID == 2){
 						float player1X = dataIn.readFloat();
@@ -328,6 +331,10 @@ public class GameFrame extends JFrame implements Runnable {
 							player1.setX(player1X);
 							player1.setY(player1Y);
                             isTheGameRunning.stopTheGame(isTheGameRunningBool);
+                            isTheGameRunning.getCompletedOverlay().determineWinner(isTheGameRunningBool);
+                            if (isTheGameRunningBool == true)
+                                isTheGameRunning.getCompletedOverlay().determineWinner(isTheGameRunningBool);
+                                //System.exit(0); // exits player2 if player1 wins the game
 		  	           }
                     }
 				}

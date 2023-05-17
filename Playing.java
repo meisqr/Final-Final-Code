@@ -405,5 +405,9 @@ public class Playing extends State implements Statemethods {
 		return gameCompleted;
 	}
 
+	public GameCompletedOverlay getCompletedOverlay(){
+		return gameCompletedOverlay;
+	}
+
 	
 }
